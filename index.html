@@ -8,437 +8,163 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap');
 
   :root {
-    --bg: #f7f4ef;
-    --paper: #fffdf8;
-    --ink: #1c1a16;
-    --muted: #7a7568;
-    --accent: #c8602a;
-    --accent-light: #f5e8de;
-    --border: #ddd9d0;
-    --tag-1: #e8f0e8;
-    --tag-2: #e8e8f5;
-    --tag-3: #f5f0e8;
+    --bg: #f7f4ef; --paper: #fffdf8; --ink: #1c1a16; --muted: #7a7568;
+    --accent: #c8602a; --accent-light: #f5e8de; --border: #ddd9d0;
+    --tag-1: #e8f0e8; --tag-2: #e8e8f5; --tag-3: #f5f0e8;
+    /* 출처별 컬러 */
+    --src-kim: #5a6a3a; --src-kim-bg: #eef3e4;
+    --src-jung: #3a5a6a; --src-jung-bg: #e4eff3;
+    --src-lim: #6a3a5a; --src-lim-bg: #f3e4ef;
+    --src-jy: #8a5a20; --src-jy-bg: #f8eed8;
+    --src-lec: #3030a0; --src-lec-bg: #eeeeff;
+    --src-all: #555; --src-all-bg: #ebebeb;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    line-height: 1.75;
-  }
-
-  .page {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 48px 32px 80px;
-  }
+  body { background: var(--bg); color: var(--ink); font-family: 'Noto Sans KR', sans-serif; font-size: 14px; line-height: 1.75; }
+  .page { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
 
   /* Header */
-  .header {
-    border-bottom: 2px solid var(--ink);
-    padding-bottom: 20px;
-    margin-bottom: 36px;
-  }
+  .header { border-bottom: 2px solid var(--ink); padding-bottom: 20px; margin-bottom: 36px; }
+  .header-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .header h1 { font-family: 'Noto Serif KR', serif; font-size: 26px; font-weight: 700; line-height: 1.3; }
+  .header-meta { display: flex; gap: 24px; margin-top: 12px; font-size: 12px; color: var(--muted); }
+  .source-list { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .source-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border: 1px solid var(--border); border-radius: 20px; font-size: 11px; background: var(--paper); color: var(--muted); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 
-  .header-label {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-
-  .header h1 {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 26px;
-    font-weight: 700;
-    line-height: 1.3;
-    color: var(--ink);
-  }
-
-  .header-meta {
-    display: flex;
-    gap: 24px;
-    margin-top: 12px;
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  .source-list {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-  }
-
-  .source-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 3px 10px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    font-size: 11px;
-    background: var(--paper);
-    color: var(--muted);
-  }
-
-  .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
-  /* Summary box */
-  .summary-box {
-    background: var(--accent-light);
-    border-left: 3px solid var(--accent);
-    padding: 18px 22px;
-    margin-bottom: 40px;
-    border-radius: 0 6px 6px 0;
-  }
-
-  .summary-box p {
-    font-size: 13.5px;
-    line-height: 1.8;
-    color: #4a3828;
-  }
+  /* Summary */
+  .summary-box { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 16px 20px; margin-bottom: 36px; border-radius: 0 6px 6px 0; }
+  .summary-box p { font-size: 13.5px; line-height: 1.8; color: #4a3828; }
 
   /* Section */
-  .section {
-    margin-bottom: 44px;
-  }
+  .section { margin-bottom: 44px; }
+  .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .section-num { font-family: 'Noto Serif KR', serif; font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; background: var(--accent-light); padding: 2px 8px; border-radius: 3px; }
+  .section h2 { font-family: 'Noto Serif KR', serif; font-size: 17px; font-weight: 700; }
+  .section-rule { flex: 1; height: 1px; background: var(--border); }
 
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 18px;
-  }
+  /* Sub */
+  .sub { margin-bottom: 26px; }
+  .sub h3 { font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .sub h3::before { content: ''; display: inline-block; width: 3px; height: 13px; background: var(--accent); border-radius: 2px; flex-shrink: 0; }
 
-  .section-num {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 11px;
-    color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    background: var(--accent-light);
-    padding: 2px 8px;
-    border-radius: 3px;
-  }
+  /* Items */
+  .items { display: flex; flex-direction: column; gap: 7px; }
+  .item { background: var(--paper); border: 1px solid var(--border); border-radius: 8px; padding: 10px 13px; font-size: 13.5px; line-height: 1.7; }
+  .item-top { display: flex; align-items: flex-start; gap: 10px; }
+  .item-bullet { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 9px; }
+  .item-text { flex: 1; }
+  .item.warn { border-color: #e8c4a4; background: #fdf5ee; }
+  .item.warn .item-bullet { background: #d05020; }
+  .item.good { border-color: #b8d4b8; background: #f3faf3; }
+  .item.good .item-bullet { background: #4a8a4a; }
 
-  .section h2 {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--ink);
+  /* 출처 태그 */
+  .src-row { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 7px; padding-top: 7px; border-top: 1px dashed var(--border); }
+  .src-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 8px; border-radius: 10px; font-size: 10.5px;
+    cursor: pointer; border: 1px solid transparent;
+    transition: opacity 0.15s; user-select: none; position: relative;
   }
+  .src-tag:active { opacity: 0.7; }
+  .src-tag .src-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
 
-  .section-rule {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
+  .src-kim { background: var(--src-kim-bg); color: var(--src-kim); border-color: #c8d8a8; }
+  .src-kim .src-dot { background: var(--src-kim); }
+  .src-jung { background: var(--src-jung-bg); color: var(--src-jung); border-color: #a8c8d8; }
+  .src-jung .src-dot { background: var(--src-jung); }
+  .src-lim { background: var(--src-lim-bg); color: var(--src-lim); border-color: #d8a8c8; }
+  .src-lim .src-dot { background: var(--src-lim); }
+  .src-jy { background: var(--src-jy-bg); color: var(--src-jy); border-color: #d8b878; }
+  .src-jy .src-dot { background: var(--src-jy); }
+  .src-lec { background: var(--src-lec-bg); color: var(--src-lec); border-color: #b0b0e0; }
+  .src-lec .src-dot { background: var(--src-lec); }
+  .src-all { background: var(--src-all-bg); color: var(--src-all); border-color: #ccc; }
+  .src-all .src-dot { background: var(--src-all); }
+
+  /* 출처 팝오버 */
+  .src-popup {
+    position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+    background: #222; color: #fff; padding: 10px 16px; border-radius: 10px;
+    font-size: 12px; line-height: 1.6; max-width: 300px; width: 90%;
+    z-index: 2000; box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+    opacity: 0; pointer-events: none; transition: opacity 0.2s;
   }
+  .src-popup.show { opacity: 1; }
+  .src-popup-name { font-weight: 600; margin-bottom: 3px; font-size: 13px; }
 
-  /* Sub section */
-  .sub {
-    margin-bottom: 28px;
-  }
-
-  .sub h3 {
-    font-size: 13.5px;
-    font-weight: 500;
-    color: var(--muted);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .sub h3::before {
-    content: '';
-    display: inline-block;
-    width: 3px;
-    height: 13px;
-    background: var(--accent);
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-
-  /* Item list */
-  .items {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 11px 15px;
-    font-size: 13.5px;
-    line-height: 1.7;
-  }
-
-  .item-bullet {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-    margin-top: 8px;
-  }
-
-  /* Warning items */
-  .item.warn {
-    border-color: #e8c4a4;
-    background: #fdf5ee;
-  }
-
-  .item.warn .item-bullet {
-    background: #d05020;
-  }
-
-  /* Good items */
-  .item.good {
-    border-color: #b8d4b8;
-    background: #f3faf3;
-  }
-
-  .item.good .item-bullet {
-    background: #4a8a4a;
-  }
-
-  /* Divider */
-  .divider {
-    border: none;
-    border-top: 1px dashed var(--border);
-    margin: 36px 0;
-  }
-
-  /* Tag row */
-  .tag-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 14px;
-  }
-
-  .tag {
-    padding: 3px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-
+  /* Misc */
+  .divider { border: none; border-top: 1px dashed var(--border); margin: 32px 0; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .tag { padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; }
   .tag-day1 { background: var(--tag-1); color: #2a5a2a; }
   .tag-day2 { background: var(--tag-2); color: #2a2a5a; }
   .tag-day3 { background: var(--tag-3); color: #5a3a1a; }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .info-card { background: var(--paper); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; }
+  .info-card .label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+  .info-card .value { font-family: 'Noto Serif KR', serif; font-size: 15px; font-weight: 600; }
+  .info-card .value small { font-family: 'Noto Sans KR', sans-serif; font-size: 12px; font-weight: 400; color: var(--muted); }
+  .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 11.5px; color: var(--muted); line-height: 1.7; }
 
-  /* Info grid */
-  .info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-
-  .info-card {
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 14px 16px;
-  }
-
-  .info-card .label {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-
-  .info-card .value {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ink);
-  }
-
-  .info-card .value small {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--muted);
-  }
-
-  /* Footer */
-  .footer {
-    margin-top: 60px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-    font-size: 11.5px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
+  /* 플로팅 목차 */
+  #toc-btn { position: fixed; bottom: 24px; right: 20px; width: 52px; height: 52px; background: var(--accent); color: #fff; border: none; border-radius: 50%; font-size: 22px; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.22); z-index: 1000; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
+  #toc-btn:active { transform: scale(0.92); }
+  #toc-panel { position: fixed; bottom: 86px; right: 16px; background: var(--paper); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); z-index: 999; padding: 10px 6px; min-width: 210px; display: none; flex-direction: column; gap: 2px; }
+  #toc-panel.open { display: flex; }
+  .toc-item { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-radius: 8px; text-decoration: none; color: var(--ink); font-size: 13px; }
+  .toc-item:active { background: var(--accent-light); }
+  .toc-badge { font-size: 10px; padding: 2px 7px; border-radius: 10px; background: var(--accent-light); color: var(--accent); font-weight: 600; flex-shrink: 0; }
+  .toc-badge.lec { background: #eeeeff; color: #3030a0; }
+  .toc-title { flex: 1; line-height: 1.3; }
 
   @media (max-width: 600px) {
     .page { padding: 20px 14px 100px; }
     .info-grid { grid-template-columns: 1fr; }
     .header h1 { font-size: 20px; }
     .section h2 { font-size: 15px; }
-    .item { font-size: 13px; padding: 10px 12px; }
-    .sub h3 { font-size: 12.5px; }
+    .item { font-size: 13px; }
     body { font-size: 13px; }
   }
-
-  /* 플로팅 목차 버튼 */
-  #toc-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 20px;
-    width: 52px;
-    height: 52px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.22);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-  }
-  #toc-btn:active { transform: scale(0.92); }
-
-  /* 목차 패널 */
-  #toc-panel {
-    position: fixed;
-    bottom: 86px;
-    right: 16px;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-    z-index: 999;
-    padding: 12px 6px;
-    min-width: 210px;
-    display: none;
-    flex-direction: column;
-    gap: 2px;
-  }
-  #toc-panel.open { display: flex; }
-
-  .toc-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: var(--ink);
-    font-size: 13px;
-    font-family: 'Noto Sans KR', sans-serif;
-    transition: background 0.15s;
-  }
-  .toc-item:active, .toc-item:hover { background: var(--accent-light); }
-  .toc-badge {
-    font-size: 10px;
-    padding: 2px 7px;
-    border-radius: 10px;
-    background: var(--accent-light);
-    color: var(--accent);
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-  .toc-badge.lecture {
-    background: #eeeeff;
-    color: #3030a0;
-  }
-  .toc-title { flex: 1; line-height: 1.3; }
 </style>
 </head>
 <body>
 
+<!-- 팝오버 -->
+<div class="src-popup" id="popup">
+  <div class="src-popup-name" id="popup-name"></div>
+  <div id="popup-desc"></div>
+</div>
+
 <!-- 플로팅 목차 -->
 <button id="toc-btn" onclick="toggleToc()" aria-label="목차">☰</button>
 <nav id="toc-panel">
-  <a class="toc-item" href="#s-basic" onclick="closeToc()">
-    <span class="toc-badge">구조</span>
-    <span class="toc-title">평가 방식 & 배점</span>
-  </a>
-  <a class="toc-item" href="#s-day1" onclick="closeToc()">
-    <span class="toc-badge">Day 1</span>
-    <span class="toc-title">집단토론</span>
-  </a>
-  <a class="toc-item" href="#s-day2" onclick="closeToc()">
-    <span class="toc-badge">Day 2</span>
-    <span class="toc-title">서류함기법</span>
-  </a>
-  <a class="toc-item" href="#s-day3" onclick="closeToc()">
-    <span class="toc-badge">Day 3</span>
-    <span class="toc-title">역할연기</span>
-  </a>
-  <a class="toc-item" href="#s-tips" onclick="closeToc()">
-    <span class="toc-badge">팁</span>
-    <span class="toc-title">공통 팁 & 멘탈</span>
-  </a>
-  <a class="toc-item" href="#s-kim" onclick="closeToc()">
-    <span class="toc-badge">후기</span>
-    <span class="toc-title">김지영 합격 후기</span>
-  </a>
-  <a class="toc-item" href="#s-lecture" onclick="closeToc()">
-    <span class="toc-badge lecture">강의</span>
-    <span class="toc-title">조은희 강사 강의</span>
-  </a>
+  <a class="toc-item" href="#s-basic" onclick="closeToc()"><span class="toc-badge">구조</span><span class="toc-title">평가 방식 & 배점</span></a>
+  <a class="toc-item" href="#s-day1" onclick="closeToc()"><span class="toc-badge">Day 1</span><span class="toc-title">집단토론</span></a>
+  <a class="toc-item" href="#s-day2" onclick="closeToc()"><span class="toc-badge">Day 2</span><span class="toc-title">서류함기법</span></a>
+  <a class="toc-item" href="#s-day3" onclick="closeToc()"><span class="toc-badge">Day 3</span><span class="toc-title">역할연기</span></a>
+  <a class="toc-item" href="#s-tips" onclick="closeToc()"><span class="toc-badge">팁</span><span class="toc-title">공통 팁 & 멘탈</span></a>
+  <a class="toc-item" href="#s-kim" onclick="closeToc()"><span class="toc-badge">후기</span><span class="toc-title">김지영 합격 후기</span></a>
+  <a class="toc-item" href="#s-lecture" onclick="closeToc()"><span class="toc-badge lec">강의</span><span class="toc-title">조은희 강사 강의</span></a>
 </nav>
-<script>
-  function toggleToc() {
-    document.getElementById('toc-panel').classList.toggle('open');
-  }
-  function closeToc() {
-    document.getElementById('toc-panel').classList.remove('open');
-  }
-  // 패널 바깥 클릭 시 닫기
-  document.addEventListener('click', function(e) {
-    var btn = document.getElementById('toc-btn');
-    var panel = document.getElementById('toc-panel');
-    if (!btn.contains(e.target) && !panel.contains(e.target)) {
-      panel.classList.remove('open');
-    }
-  });
-</script>
+
 <div class="page">
 
-  <!-- Header -->
   <div class="header">
     <div class="header-label">우정사업본부 5급 승진 대기자 / 내부 학습 자료</div>
-    <h1>역량평가 시험 후기 정리<br><span style="font-size:18px;color:var(--muted)">— 통화 녹음 3건 발췌·요약</span></h1>
-    <div class="header-meta">
-      <span>정리 기준: 2026년</span>
-      <span>대상: 5급 승진 역량평가 준비자</span>
-    </div>
+    <h1>역량평가 시험 후기 정리<br><span style="font-size:18px;color:var(--muted)">— 통화 녹음 4건 + 강사 강의 녹취</span></h1>
+    <div class="header-meta"><span>정리 기준: 2026년</span><span>대상: 5급 승진 역량평가 준비자</span></div>
     <div class="source-list">
-      <span class="source-chip"><span class="dot"></span>김영숙 (25.06.26 · 약 89분)</span>
-      <span class="source-chip"><span class="dot"></span>정기홍 (26.03.04 · 약 28분)</span>
-      <span class="source-chip"><span class="dot"></span>임은영 (26.03.18 · 약 40분)</span>
-      <span class="source-chip"><span class="dot"></span>김지영·양천 (26.04.14 · 약 35분)</span>
-      <span class="source-chip" style="background:#f0f0fa;border-color:#b0b0d8;"><span class="dot" style="background:#4040a0;"></span>조은희 강사 강의 녹취 (2개 파일)</span>
+      <span class="source-chip" style="background:var(--src-kim-bg);border-color:#c8d8a8;color:var(--src-kim)"><span class="dot" style="background:var(--src-kim)"></span>김영숙 (25.06.26 · 89분)</span>
+      <span class="source-chip" style="background:var(--src-jung-bg);border-color:#a8c8d8;color:var(--src-jung)"><span class="dot" style="background:var(--src-jung)"></span>정기홍 (26.03.04 · 28분)</span>
+      <span class="source-chip" style="background:var(--src-lim-bg);border-color:#d8a8c8;color:var(--src-lim)"><span class="dot" style="background:var(--src-lim)"></span>임은영 (26.03.18 · 40분)</span>
+      <span class="source-chip" style="background:var(--src-jy-bg);border-color:#d8b878;color:var(--src-jy)"><span class="dot" style="background:var(--src-jy)"></span>김지영·양천 (26.04.14 · 35분)</span>
+      <span class="source-chip" style="background:var(--src-lec-bg);border-color:#b0b0e0;color:var(--src-lec)"><span class="dot" style="background:var(--src-lec)"></span>조은희 강사 강의</span>
     </div>
+    <div style="margin-top:10px;font-size:11px;color:var(--muted)">💬 각 항목 아래 출처 태그를 누르면 누가 한 말인지 확인할 수 있어요</div>
   </div>
 
-  <!-- 총평 -->
   <div class="summary-box">
     <p>세 통화 모두 공통적으로 강조하는 핵심 메시지: <strong>정답은 없지만 오답은 있다.</strong> 과제 밖에서 정보를 끌어오거나, 주어진 자료를 무시하면 감점·탈락. 과제 자료 안에서 충실하게 답변하면 기본 점수는 충분히 확보 가능. 스트레스와 압박은 과정의 일부이며, 큰 실수만 없으면 대부분 통과한다는 것이 공통된 후기.</p>
   </div>
@@ -450,165 +176,316 @@
       <h2>평가 방식 및 배점</h2>
       <div class="section-rule"></div>
     </div>
-
     <div class="info-grid">
-      <div class="info-card">
-        <div class="label">인원 구성</div>
-        <div class="value">18명 <small>→ 6명 3조 → 3명 분임</small></div>
-      </div>
-      <div class="info-card">
-        <div class="label">총점 구조 (점수 배분)</div>
-        <div class="value">집단토론 30 / 서류함 30 / 역할연기 40</div>
-      </div>
-      <div class="info-card">
-        <div class="label">통과 기준</div>
-        <div class="value">5점 만점 중 2점 이상 <small>(100점 환산 40점 이상)</small></div>
-      </div>
-      <div class="info-card">
-        <div class="label">기본 점수</div>
-        <div class="value">1점 <small>= 20점 자동 부여</small></div>
-      </div>
+      <div class="info-card"><div class="label">인원 구성</div><div class="value">18명 <small>→ 6명 3조 → 3명 분임</small></div></div>
+      <div class="info-card"><div class="label">배점</div><div class="value">집단토론 30 / 서류함 30 / 역할연기 40</div></div>
+      <div class="info-card"><div class="label">통과 기준</div><div class="value">5점 만점 중 2점 이상 <small>(100점 환산 40점)</small></div></div>
+      <div class="info-card"><div class="label">기본 점수</div><div class="value">1점 <small>= 20점 자동 부여</small></div></div>
     </div>
-
     <div class="items">
-      <div class="item"><span class="item-bullet"></span>일정: 1일차 집단토론, 2일차 서류함기법, 3일차 역할연기 (순서가 바뀔 수 있음)</div>
-      <div class="item"><span class="item-bullet"></span>방 배정: 1인 1실. 핸드폰은 서류함기법 당일 아침 제출, 저녁에 반환. 조용히 복습 가능</div>
-      <div class="item"><span class="item-bullet"></span>결과 통보: 평가 직후 월요일 오후 4시 10분경, 합격자는 행정포탈 메일, 불합격자는 개인 휴대폰 문자</div>
-      <div class="item"><span class="item-bullet"></span>과락 개념 존재: 특정 영역에서 완전 오답이거나 보고서 미제출 시 전체 탈락 가능성 있음</div>
+      <div class="item">
+        <div class="item-top"><span class="item-bullet"></span><span class="item-text">일정: 1일차 집단토론 / 2일차 서류함기법 / 3일차 역할연기 (순서 변경 가능)</span></div>
+        <div class="src-row">
+          <span class="src-tag src-kim" onclick="showSrc('김영숙','실제 3일 과정 전체 경험 후 상세 설명')"><span class="src-dot"></span>김영숙</span>
+          <span class="src-tag src-jung" onclick="showSrc('정기홍','일정 순서 동일하게 확인')"><span class="src-dot"></span>정기홍</span>
+          <span class="src-tag src-lec" onclick="showSrc('조은희 강사','1일차 30점·2일차 30점·3일차 40점 배점 구조 설명')"><span class="src-dot"></span>조은희 강사</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-bullet"></span><span class="item-text">방 배정 1인 1실. 핸드폰은 서류함기법 당일 아침 제출 — 저녁에 반환. 조용히 복습 가능</span></div>
+        <div class="src-row">
+          <span class="src-tag src-kim" onclick="showSrc('김영숙','핸드폰 제출 일정 직접 경험 후 설명')"><span class="src-dot"></span>김영숙</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-bullet"></span><span class="item-text">결과 통보: 월요일 오후 4시 10분경. 합격자 → 행정포탈 메일, 불합격자 → 개인 휴대폰 문자</span></div>
+        <div class="src-row">
+          <span class="src-tag src-kim" onclick="showSrc('김영숙','월요일 4시 10분에 메일 왔다고 직접 경험 서술')"><span class="src-dot"></span>김영숙</span>
+          <span class="src-tag src-jy" onclick="showSrc('김지영','이번 기수 결과 알림 방식 동일하게 확인')"><span class="src-dot"></span>김지영</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-bullet"></span><span class="item-text">과락 개념 존재: 특정 역량 영역을 완전히 보여주지 못하면 전체 탈락 가능. 보고서 3개 중 하나 백지면 해당 역량 점수 0점 시작</span></div>
+        <div class="src-row">
+          <span class="src-tag src-lec" onclick="showSrc('조은희 강사','3번 과제 백지 제출 시 의사결정 역량 점수를 보여줄 기회 자체가 없어진다고 명시')"><span class="src-dot"></span>조은희 강사</span>
+        </div>
+      </div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- Day 1 집단토론 -->
+  <!-- Day 1 -->
   <div class="section" id="s-day1">
     <div class="section-header">
       <span class="section-num">Day 1</span>
       <h2>집단토론</h2>
       <div class="section-rule"></div>
     </div>
-    <div class="tag-row"><span class="tag tag-day1">30점</span><span class="tag tag-day1">3명 1조</span><span class="tag tag-day1">20~30분 토론</span></div>
+    <div class="tag-row"><span class="tag tag-day1">30점</span><span class="tag tag-day1">3명 1조</span><span class="tag tag-day1">30분 토론</span><span class="tag tag-day1">조직관리·의사결정 역량</span></div>
 
     <div class="sub">
       <h3>진행 방식</h3>
       <div class="items">
-        <div class="item"><span class="item-bullet"></span>영업과장·물류과장·지원과장 역할 배정 후 사전 자료 검토 30분 (메모장 작성 후 제출, 토론 중 참고 가능)</div>
-        <div class="item"><span class="item-bullet"></span>과제 예시 ①: 4천만 원 예산 삭감 미션 — 각 과별 예산 항목 검토 후 합의점 도출 (정기홍)</div>
-        <div class="item"><span class="item-bullet"></span>과제 예시 ②: 인원 차출 — TF팀에 직원을 보낼 것인지 3개 과가 협의 (김영숙·임은영)</div>
-        <div class="item"><span class="item-bullet"></span>과제 예시 ③: 공익사업 안건 선택 + TFT 파견 직원 결정 (임은영)</div>
-        <div class="item"><span class="item-bullet"></span>자료 안에 '정부 지원 사업' 등 활용 가능한 숨은 정보가 있음 — 이걸 찾아서 언급하면 가점</div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">과제 15~20페이지 배부 → 30분 숙지(연습지 메모) → 자료·연습지 전원 회수 → 차례 되면 본인 자료 돌려받고 5분 재검토 → 30분 토론</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','회수 후 재배부 절차 상세히 설명. 2조는 1조 끝난 뒤 나와서 5분 재검토 후 토론')"><span class="src-dot"></span>조은희 강사</span>
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','실제 경험으로 동일 절차 확인')"><span class="src-dot"></span>김영숙</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">평가위원 2명이 V자 대형으로 앉아 언어적·비언어적 행동 모두 관찰. 표정·눈빛·고개 방향까지 기록됨. 30분 동안 절대 개입 안 함</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','V자 대형 이유: 뒤통수만 보이면 언어만 관찰 가능. 비언어 포함해 전부 보기 위해 V자로 앉힘')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">실제 출제 과제 예시 — 인원 차출(TFT 파견 1명 결정), 예산 4천만원 삭감 합의, 공익사업 안건 선택</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','인원 차출 과제 직접 경험')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-jung" onclick="showSrc('정기홍','예산 4천만원 삭감 미션 직접 경험')"><span class="src-dot"></span>정기홍</span>
+            <span class="src-tag src-lim" onclick="showSrc('임은영','공익사업 안건 선택 + TFT 차출 혼합 과제 경험')"><span class="src-dot"></span>임은영</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">토론 시작 전 연습지에 반드시 적을 것: "오늘은 2030년 X월, 나는 ○○과장이다" — 역할 혼동 방지</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','실제로 자기 역할을 잊어버려 영업과 입장만 대변하는 물류과장 사례 목격')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="sub">
       <h3>잘하는 행동 ✓</h3>
       <div class="items">
-        <div class="item good"><span class="item-bullet"></span>지원과장이 사회자 역할을 맡아 흐름을 리드하면 점수에 유리</div>
-        <div class="item good"><span class="item-bullet"></span>상대가 논지에서 벗어날 때 부드럽게 제자리로 돌려놓으면 가점</div>
-        <div class="item good"><span class="item-bullet"></span>경청 + 상대 의견 칭찬 + 본인 입장 제시 순서로 발언</div>
-        <div class="item good"><span class="item-bullet"></span>남을 건 주되, 받아야 할 건 명확히 요구 (대신 지원과에서 소속국 지원해달라 등)</div>
-        <div class="item good"><span class="item-bullet"></span>25분쯤 되면 결론을 향해 수렴시킬 것 (타이머 인식)</div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">지원과장이 사회자 역할 맡아 흐름 리드 — "물류과장님 먼저 말씀하시죠" 식으로 순서 유도</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','지원과장이 사회 보도록 하면 점수에 유리하다고 경험 후 조언')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-jy" onclick="showSrc('김지영','지원과장이 사회 잘 봐줘서 고마웠다고 직접 언급')"><span class="src-dot"></span>김지영</span>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">토론이 잘못된 방향으로 갈 때 부드럽게 제자리로 — "그 방향보다 이 방법이 더 낫지 않을까요?" 가점 포인트</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','산으로 가는 사람을 잡아주면 피드백에서 칭찬받았다고 언급')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','평가위원이 개입 못 하므로 세 명이 스스로 방향 잡아야 함. 이 역할이 집단토론 핵심')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">경청 + 상대 의견 칭찬 + 본인 입장 제시 순서로. 상대 말하는 동안 고개 들고 눈 맞춤</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','경청하고 칭찬해주고 배려하는 모습을 평가한다고 설명')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','다른 과장 발언 중 과제만 들여다보면 경청 미흡으로 기록된다고 명시')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">줄 건 주되 받아야 할 건 명확히 요구. "우리 과 직원 보낼 테니, 대신 지원과에서 소속국 지원 해달라" 식의 give & take</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','내놨으면 받을 것도 있어야 한다. 그런 식으로 끌어나가야 한다고 강조')"><span class="src-dot"></span>김영숙</span>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">25분쯤 결론 향해 수렴. 남은 시간도 역량 보여줄 기회 — 일찍 합의해도 더 나은 방향 없는지 계속 논의</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','타이머 보면서 시간 안배해야 한다고 강조')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','20분에 일찍 합의하고 10분 남기면 역량 보여줄 마지막 기회를 버리는 것')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="sub">
       <h3>하면 안 되는 행동 ✗</h3>
       <div class="items">
-        <div class="item warn"><span class="item-bullet"></span>처음부터 바로 양보 ("드릴게요") — 바로 감점</div>
-        <div class="item warn"><span class="item-bullet"></span>상대방 말을 끊거나 자기 주장만 계속 반복</div>
-        <div class="item warn"><span class="item-bullet"></span>과제 자료에 없는 외부 인물·사례 언급 (오답)</div>
-        <div class="item warn"><span class="item-bullet"></span>현실 업무 이야기를 너무 끌어들여 과제 범위 이탈</div>
-        <div class="item warn"><span class="item-bullet"></span>말을 전혀 안 하거나 혼자 독주하는 것 둘 다 좋지 않음</div>
+        <div class="item warn">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">처음부터 바로 양보 "드릴게요" — 즉시 감점. 직원들에게도 동기부여가 안 되는 과장으로 평가됨</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','처음부터 내놓겠다고 하면 왜 이유도 없이 양보했냐고 지적 받는다')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','무조건적 양보는 조직관리 역량에서 최하점. 직원들 동기부여 안 된다는 시각으로 평가')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item warn">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">과제 자료에 없는 인물·사례 언급, 현실 우체국 상황 끌어들이기 — 오답. "주어진 재료만 써야 한다"</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','자료 안에 있는 인물 중에서만 차출해야 한다. 없는 사람 쓰면 오답')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','흑백요리사 비유: 주어진 재료 10개로만 요리. 집에서 가져온 재료 쓰면 과제 숙지 미흡')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item warn">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">기준 정하자는 말에 바로 "우리 과 홍길동이 적임자" — 동문서답. 기준 논의 없이 결론부터 주장</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','기준을 어떻게 정할지 물어봤는데 사람 이름 바로 대는 건 동문서답이라고 직접 사례 들어 설명')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item warn">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">발언량 현저히 적음 — 기여도 낮음으로 기록. 발언 기회 받아도 과제 파악이 안 되어 있으면 말할 내용이 없음</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','A4 용지로 과장별 발언을 실시간 기록. 발언량 적으면 기여도도 낮게 평가됨')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- Day 2 서류함기법 -->
+  <!-- Day 2 -->
   <div class="section" id="s-day2">
     <div class="section-header">
       <span class="section-num">Day 2</span>
       <h2>서류함기법 (In-Basket)</h2>
       <div class="section-rule"></div>
     </div>
-    <div class="tag-row"><span class="tag tag-day2">30점</span><span class="tag tag-day2">80분 자료작성</span><span class="tag tag-day2">5분 구두발표</span><span class="tag tag-day2">15분 질의응답</span></div>
+    <div class="tag-row"><span class="tag tag-day2">30점</span><span class="tag tag-day2">80분 작성</span><span class="tag tag-day2">5분 발표</span><span class="tag tag-day2">15분 질의응답</span><span class="tag tag-day2">사업관리·의사결정 역량</span></div>
 
     <div class="sub">
-      <h3>자료 구성 및 시간 배분 전략</h3>
+      <h3>시간 배분 전략</h3>
       <div class="items">
-        <div class="item"><span class="item-bullet"></span>자료는 약 15페이지 내외, 가로 형식, 폰트 12pt 내외. 형광펜·3색 볼펜 지참 필수 (문제점·현황·개선방안 색별로 표시)</div>
-        <div class="item"><span class="item-bullet"></span>과제 3개 (1번: 현황·문제점·개선방안 보고서 / 2·3번: 간단한 선택형 서술)</div>
-        <div class="item"><span class="item-bullet"></span><strong>시간 배분 핵심:</strong> 자료 검토 30분 → 2·3번 먼저 25분 → 1번 25분</div>
-        <div class="item"><span class="item-bullet"></span>2·3번은 반 페이지 수준, 80% 완성도면 충분. 1번에 시간 집중</div>
-        <div class="item"><span class="item-bullet"></span>1번에서 현황을 표 형식으로 작성하면 칭찬·가점 (실제 경험담)</div>
-        <div class="item"><span class="item-bullet"></span>개조식 작성, 꼭지 하나당 최소 2줄 이상. 문제점 3개면 개선방안도 3개 대응</div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">자료 검토 30분 → 2·3번 먼저 각 ~12분 → 1번(메인 보고서) 나머지 25분. 1번부터 완벽하게 하려다 3번 백지 내는 사례 다수</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','2번 3번 먼저 쓰고 1번 나중에 쓰라고 강조. 1번에 25분 남겨놓으라고')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','1번 완벽하게 하려다 3번 손도 못 대는 사례 직접 목격. 세 개 80%씩이 더 효과적')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">PC 작성 — 입실 후 바로 이름 바꾸기. 자료 배부 전 PC 화면에 과제 제목 미리 보임 → 커서 내려 제목만 파악해두기</span></div>
+          <div class="src-row">
+            <span class="src-tag src-jy" onclick="showSrc('김지영','이름 바꾸기 먼저 하라고 강조. 제목 미리 볼 수 있다는 팁 직접 경험')"><span class="src-dot"></span>김지영</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">1번 현황을 표 형식으로 작성하면 칭찬·가점. 개조식 작성, 꼭지 하나당 최소 2줄 이상. 문제점 3개면 개선방안도 3개</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','현황을 표로 작성하니 참 보기 좋다고 피드백에서 칭찬받은 실제 경험')"><span class="src-dot"></span>김영숙</span>
+          </div>
+        </div>
+        <div class="item warn">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">지역 현황·배경 설명 장황하게 쓰는 것 금지. 평가위원이 궁금한 건 "그래서 어떻게 할 것인가"</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','너도 알고 나도 아는 지역 현황을 반 페이지씩 쓰는 분 실제로 있음. 역지사지로 보고서 읽어볼 것')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item warn">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">PC 작성 시 오타·이름 혼동·근거-결론 불일치 주의. 마지막 1~2분 반드시 검토</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','선택한 사람 이름과 근거가 서로 다른 보고서 실제로 목격. 80분 주는데 오타 난무한다고 언급')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="sub">
-      <h3>구두발표 (5분)</h3>
+      <h3>발표 & 질의응답</h3>
       <div class="items">
-        <div class="item"><span class="item-bullet"></span>보고서를 그대로 읽어도 무방 — 대부분 그렇게 함. 1번 2~3분, 2·3번 각 1분 내외로 배분</div>
-        <div class="item"><span class="item-bullet"></span>시간 내 3개 보고서 발표 완료가 목표. 못 끝내면 "이상으로 마치겠습니다"로 마무리</div>
-        <div class="item"><span class="item-bullet"></span>평가자 2명 중 1명이 담당. 교육생들은 측면에서 관람 (정면 아님)</div>
-      </div>
-    </div>
-
-    <div class="sub">
-      <h3>질의응답 (15분)</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>평가자가 꼬리 질문을 하면 끝까지 자기 선택을 고수해야 함 — 흔들리면 감점</div>
-        <div class="item"><span class="item-bullet"></span>"B가 더 나은 것 같은데요?" → "B도 고민했지만 A를 선택한 이유는 ~입니다" 형식으로 유지</div>
-        <div class="item"><span class="item-bullet"></span>모르면: "거기까지는 파악하지 못했습니다"로 정리. "다음에 보고드리겠습니다"는 절대 금지</div>
-        <div class="item"><span class="item-bullet"></span>오타·잘못된 선택이 있으면 솔직하게 인정하고 수정: "제가 잘못 기재했습니다, 맞는 내용은 ~입니다"</div>
-        <div class="item warn"><span class="item-bullet"></span>선택 항목 외의 인물·사례를 차출 대상으로 지명하는 것 = 오답 (실제 탈락 사례)</span></div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">보고서를 그대로 읽어도 무방 — 대부분 그렇게 함. 1번 2~3분, 2·3번 각 1분 내외로 5분 완료 목표</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','발표할 때 그냥 읽어도 된다고. 외워서 말하려다 기억 안 나면 더 곤란')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-jy" onclick="showSrc('김지영','발표는 잘했다는 평가 받음. 평소 우체국 발표 경험 도움됐다고')"><span class="src-dot"></span>김지영</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">현황·문제점·개선방안 자세히 쓸수록 심화 질문으로 이어짐 → 높은 점수 출발점. 아무것도 안 쓰면 기초 질문부터 시작</span></div>
+          <div class="src-row">
+            <span class="src-tag src-jy" onclick="showSrc('김지영','옆 사람이 현황을 안 적었더니 기초 질문부터 들어오더라. 출발점이 다르다고')"><span class="src-dot"></span>김지영</span>
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','보고서 충실히 쓴 사람은 상위 질문부터 시작. 안 쓴 사람은 1.2점 상태에서 올려야 해서 한계')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">선택한 것에 대해 끝까지 근거 유지. "B가 더 낫지 않나요?" → "B도 고민했지만 A를 선택한 이유는~" 으로 밀어붙이기</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','거기서 아 그럼 비로 할게요 하면 감점이라고 직접 경험 후 강조')"><span class="src-dot"></span>김영숙</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">모르면: "거기까지는 파악하지 못했습니다" — "다음에 보고드리겠습니다"는 절대 금지 (다음 기회 없음)</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','다음은 없다. 강의에서도 이 부분 꼭 강조해서 설명한다고')"><span class="src-dot"></span>김영숙</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- Day 3 역할연기 -->
+  <!-- Day 3 -->
   <div class="section" id="s-day3">
     <div class="section-header">
       <span class="section-num">Day 3</span>
       <h2>역할연기 (Role Play)</h2>
       <div class="section-rule"></div>
     </div>
-    <div class="tag-row"><span class="tag tag-day3">40점</span><span class="tag tag-day3">30분 자료검토</span><span class="tag tag-day3">20분 상담</span></div>
-
-    <div class="sub">
-      <h3>진행 방식</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>내가 과장, 상대방(평가자)이 팀장 역할 — 갈등·고민을 가진 부하직원에게 상담해주는 구조</div>
-        <div class="item"><span class="item-bullet"></span>과제 예시 ①: 보험팀장과의 상담 — FC 갈등, 실적 압박, 회계팀 복귀 요청 (김영숙·정기홍)</div>
-        <div class="item"><span class="item-bullet"></span>과제 예시 ②: 우편팀장과의 상담 — 소포팀 갈등, 신사업 거점 픽업 문제, 자괴감 호소 (정기홍)</div>
-        <div class="item"><span class="item-bullet"></span>질문 항목은 6명에게 동일. 내 답변 방식에 따라 꼬리 질문이 달라짐</div>
-        <div class="item"><span class="item-bullet"></span>평가자가 압박을 강하게 넣어도 역할(과장) 유지. 단답형 반응엔 내가 질문으로 이어받기</div>
-      </div>
-    </div>
+    <div class="tag-row"><span class="tag tag-day3">40점</span><span class="tag tag-day3">30분 자료검토</span><span class="tag tag-day3">20분 상담</span><span class="tag tag-day3">갈등관리·동기부여 역량</span></div>
 
     <div class="sub">
       <h3>상담 흐름 (권장)</h3>
       <div class="items">
-        <div class="item good"><span class="item-bullet"></span>먼저 내가 파악한 내용을 요약·확인: "제가 파악하기로는 세 가지 어려움이 있으신데, 맞나요?"</div>
-        <div class="item good"><span class="item-bullet"></span>먼저 공감 표현: "팀장님 입장이었어도 정말 힘들었을 것 같아요"</div>
-        <div class="item good"><span class="item-bullet"></span>자리 바뀐 것에 대해 선 사과: "미리 챙겼어야 했는데, 먼저 못 물어봐서 미안해요" → 실제 가점 사례</div>
-        <div class="item good"><span class="item-bullet"></span>자료에 있는 장점을 먼저 칭찬, 조심스럽게 단점도 언급 (장점만 하면 감점)</div>
-        <div class="item good"><span class="item-bullet"></span>해결책은 지시형이 아닌 제안형으로: "이렇게 해보시는 건 어떨까요?"</div>
-        <div class="item good"><span class="item-bullet"></span>중간중간 "팀장님은 어떻게 생각하세요?"로 상대에게 공을 넘겨 20분 균형 있게 사용</div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">먼저 내가 파악한 내용 확인: "제가 파악하기로는 세 가지 어려움이 있으신데, 맞나요?" — 되짚어주기</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','팀장이 나한테 상담 요청 보냈으면 내가 파악한 게 맞는지 거꾸로 물어보는 게 팁이라고')"><span class="src-dot"></span>김영숙</span>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">자리 바뀐 것 선 사과: "미리 챙겼어야 했는데 먼저 못 물어봐서 미안해요" → 실제 피드백에서 가점 언급됨</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','어떤 사람이 이렇게 했더니 팁이라고 칭찬받았다고 직접 목격')"><span class="src-dot"></span>김영숙</span>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">장점 먼저 칭찬 → 조심스럽게 단점도 언급 (장점만 하면 감점). 해결책은 지시형 아닌 제안형 "~해보시는 건 어떨까요?"</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','나는 장점만 했더니 너무 과장이 돼갖고 장점만 했다고 지적받았다고')"><span class="src-dot"></span>김영숙</span>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">중간중간 "팀장님은 어떻게 생각하세요?" 로 공을 넘겨 20분 균형 있게 사용. 혼자 7분 독백하면 감점</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','나 혼자 7분을 얘기했다고 직접 지적받음. 상대에게 물어봐야 쉬어가고 균형도 맞춤')"><span class="src-dot"></span>김영숙</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="sub">
       <h3>하면 안 되는 행동 ✗</h3>
       <div class="items">
-        <div class="item warn"><span class="item-bullet"></span>일방적으로 지시·설명만 하고 경청 없음 — 피드백에서 지적됨</div>
-        <div class="item warn"><span class="item-bullet"></span>혼자 7분 이상 독백 — 실제 사례 (평가자가 지적)</div>
-        <div class="item warn"><span class="item-bullet"></span>과제 자료 외 해결책 (Youtube 검색 등 현실 세계 언급) — 오답 리스크</div>
-        <div class="item warn"><span class="item-bullet"></span>상대가 "보내주세요"를 반복해도 그냥 보내주겠다고 동의 — 달래며 해결책 제시가 맞음</div>
-        <div class="item warn"><span class="item-bullet"></span>고개 숙이고 자료만 보며 발언 — 평가자와 눈 맞춤 필요 (실제 탈락 요인)</div>
+        <div class="item warn">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">부하직원에게 반말 금지 — 평가위원이 "과장님 언제부터 저한테 반말하셨죠?" 하면 나머지 20분이 지옥</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','4급 역량평가에서도 실제로 발생. 등에서 땀 나면서 30분 고민 다 날아간다고')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item warn">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">갈등 해결책으로 "저녁에 회식합시다, 제가 살게요" — 실제로 가장 많이 나오는 NG 패턴</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','우정사업본부에서 갈등 해결로 가장 많이 나오는 게 회식이라고. 안 된다고 강하게 강조')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item warn">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">현실 우체국 사정 끌어들이기. 나이·직급도 과제에 명시된 것만. 6급이라도 나이 많을 수 있음</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','현실 우체국이 아니라 미래의 어느 KC 우체국. 나이 편견 금물이라고 명시')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item warn">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">상대가 "보내주세요"를 반복해도 바로 동의 금지 — 달래며 해결책 제시가 맞음. 멘붕 와도 버티기</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','평가자가 계속 저 보내주세요 하면 어떡하지 막 넣는다고. 그래도 차근히 이야기해야 함')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-jy" onclick="showSrc('김지영','본인은 이 파트에서 멘붕 와서 대답 많이 못했지만 근소 차이로 합격')"><span class="src-dot"></span>김지영</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">압박 질문에 끝까지 못 답해도 괜찮음 — 그 직전까지 대답한 것은 점수로 인정. 어려운 질문 많을수록 내가 잘하고 있다는 신호</span></div>
+          <div class="src-row">
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','친절의 미흡 압박의 우수. 평가위원은 점수 상한선 찾으려고 계속 어려운 질문을 하는 것')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -622,95 +499,108 @@
       <h2>현장 꿀팁 & 멘탈 관리</h2>
       <div class="section-rule"></div>
     </div>
-
     <div class="sub">
       <h3>사전 준비</h3>
       <div class="items">
-        <div class="item"><span class="item-bullet"></span>주요 업무 계획서·사업 계획 공부는 의미 없음 — 과제 안에서 모두 해결 (세 통화 모두 일치)</div>
-        <div class="item"><span class="item-bullet"></span>지난 기수 참가자에게 미션 주제·출제 경향을 가능한 많이 수집. 기수별 과제가 반복되는 경우 있음</div>
-        <div class="item"><span class="item-bullet"></span>첫날 강의를 녹음해 저녁에 복습하면 효과적 (1인실이므로 가능)</div>
-        <div class="item"><span class="item-bullet"></span>형광펜 + 3색 볼펜 반드시 지참. 현황/문제점/개선방안 색을 다르게 표시</div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">주요 업무 계획서·사업 계획 공부 불필요 — 과제 안에서 모두 해결됨</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','주요 업무 계획 읽어본다 했는데 소용없다고. 과제 내에서 봐야 한다')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-jung" onclick="showSrc('정기홍','과제 범위 내에서 잘하면 된다고 동일하게 강조')"><span class="src-dot"></span>정기홍</span>
+            <span class="src-tag src-lim" onclick="showSrc('임은영','경험이 많아서 오히려 위험할 수 있다. 자료 안에서만 답 찾는 게 제일 좋다고')"><span class="src-dot"></span>임은영</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">지난 기수 참가자에게 미션 주제·출제 경향 최대한 수집. 기수별 과제가 반복되는 경우 있음</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','작년 갔다 온 사람, 올해 갔다 온 사람 두 명한테 들은 게 다였다고. 더 많이 들을걸')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-lim" onclick="showSrc('임은영','기수별로 뭐였냐 물어봐서 미리 생각해보는 게 도움 된다고')"><span class="src-dot"></span>임은영</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">첫날 강의 녹음해서 저녁에 복습 효과적 (1인실이므로 가능). 강의 내용이 제일 꿀팁이라고</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','옆에 어떤 사람이 녹음해서 저녁에 들으며 A4에 메모까지 했다고. 본인은 안 해서 아쉬웠다고')"><span class="src-dot"></span>김영숙</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">형광펜 + 볼펜 2개면 충분. 3색 볼펜·고무골무 등은 실제로 쓸 시간 없음</span></div>
+          <div class="src-row">
+            <span class="src-tag src-jy" onclick="showSrc('김지영','볼펜 2개 형광펜 1개만 썼다. 3색 볼펜은 시간이 없어서 못 썼다고')"><span class="src-dot"></span>김지영</span>
+          </div>
+        </div>
       </div>
     </div>
-
     <div class="sub">
       <h3>현장 운영</h3>
       <div class="items">
-        <div class="item"><span class="item-bullet"></span>함께 있는 교육생들은 경쟁자가 아님 — 쉬는 시간에 정보 공유, 아이디어 교환하면 큰 도움</div>
-        <div class="item"><span class="item-bullet"></span>지방청 참가자들이 정보가 많음 — 밥 먹을 때 귀 열고 대화에 참여</div>
-        <div class="item"><span class="item-bullet"></span>본부 출신 참가자는 상대적으로 여유 있어 보임 — 현장 직원들이 오히려 정보를 더 절실히 구함</div>
-        <div class="item"><span class="item-bullet"></span>평가자 중 한 명은 순하고 한 명은 압박형 — 누굴 만나는지는 운이므로 신경 쓸 필요 없음</div>
-      </div>
-    </div>
-
-    <div class="sub">
-      <h3>멘탈 관리</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>피드백 시간에 지적을 많이 해도 합격일 수 있음 — 피드백 내용으로 합불 예측 불가</div>
-        <div class="item"><span class="item-bullet"></span>"나 떨어진 것 같다"는 거의 모든 참가자의 공통된 느낌 — 정상적인 반응임</div>
-        <div class="item"><span class="item-bullet"></span>또박또박 자신 있게 말하면 점수에 유리. 목소리 크기·발음도 인상에 영향</div>
-        <div class="item"><span class="item-bullet"></span>첫 번째 순서는 요령을 몰라 긴장할 수 있으나, 첫 번째에게는 일정 감안·봐주는 경향 있음</div>
-        <div class="item good"><span class="item-bullet"></span>결론: 큰 실수만 없으면 기본점수로 충분. 스트레스에 대한 대가로 통과한다고 마음먹을 것</div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">함께 있는 교육생들은 경쟁자가 아님 — 쉬는 시간에 정보 공유, 아이디어 교환하면 큰 도움</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','같은 조끼리도 절대 경쟁자가 아니다. 서로 이렇게 하면 어떨까 막 얘기를 해라')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-jy" onclick="showSrc('김지영','밥 먹고 티타임 때 다른 조 사람과 얘기 나눈 게 도움이 많이 됐다고')"><span class="src-dot"></span>김지영</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">지방청 참가자들이 정보 많음 — 밥 먹을 때 귀 열고 대화에 적극 참여</span></div>
+          <div class="src-row">
+            <span class="src-tag src-jung" onclick="showSrc('정기홍','지방청 직원들이 조직적으로 자료 나눠준다는 소문. 점심 저녁 먹으면서 귀 열고 들었더니 정보 많더라')"><span class="src-dot"></span>정기홍</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">피드백 시간에 지적 많이 들어도 합격일 수 있음 — 피드백 내용으로 합불 예측 불가</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','잘한 사람도 지적을 많이 한다. 피드백 보고 다 떨어졌나봐 생각하는데 그렇지 않다')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-lec" onclick="showSrc('조은희 강사','피드백할 때 우는 분 있는데 아직 실력 안 했는데 운다. 울어도 점수 안 바뀜')"><span class="src-dot"></span>조은희 강사</span>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">결론: 큰 실수만 없으면 기본점수로 충분. 스트레스에 대한 대가로 통과한다고 마음먹을 것</span></div>
+          <div class="src-row">
+            <span class="src-tag src-kim" onclick="showSrc('김영숙','아무리 스트레스 받아도 좋으니까 통과만 시켜주세요가 다들 하는 말이라고')"><span class="src-dot"></span>김영숙</span>
+            <span class="src-tag src-jy" onclick="showSrc('김지영','편하게 갔다 온 사람들이 더 잘하더라. 멘탈이 제일 중요하다고')"><span class="src-dot"></span>김지영</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- 김지영 추가 후기 -->
+  <!-- 김지영 후기 -->
   <div class="section" id="s-kim">
     <div class="section-header">
       <span class="section-num">추가 후기</span>
       <h2>김지영 (양천) — 합격자 현장 생생 후기</h2>
       <div class="section-rule"></div>
     </div>
-
-    <div class="summary-box" style="margin-bottom:28px;">
-      <p>역할연기(40%) 파트에서 멘붕이 왔지만 <strong>"근소한 차이로 합격"</strong>. 보고서는 다 완성했으나 질의응답에서 멘탈 관리가 안 된 게 아쉬웠다고 함. <strong>멘탈 관리가 점수를 가른다</strong>는 게 핵심 결론.</p>
+    <div class="summary-box" style="margin-bottom:24px;">
+      <p>역할연기(40%) 파트에서 멘붕이 왔지만 <strong>"근소한 차이로 합격"</strong>. 보고서는 다 완성했으나 질의응답 멘탈 관리가 안 된 게 아쉬움. <strong>멘탈이 점수를 가른다</strong>는 게 핵심 결론.</p>
     </div>
-
-    <div class="sub">
-      <h3>집단토론 — 실제 출제 과제</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>과제 ①: 공익사업 중 선택 (안심꾸러미 소포 / SNS 디지털 등 2~3개 중 택1 후 추진 방안 협의)</div>
-        <div class="item"><span class="item-bullet"></span>과제 ②: TFT 차출 — 3과 중 1명 파견 결정</div>
-        <div class="item"><span class="item-bullet"></span>지원과장이 자연스럽게 사회를 맡아 "물류과장님 먼저 말씀하세요" 식으로 순서를 유도 → 나머지는 흐름에 맞춰 발언</div>
-        <div class="item good"><span class="item-bullet"></span>옆 실장님이 실수로 바로 차출 동의해버렸을 때 → "먼저 해 주셔서 감사, 저희는 협업으로 도와드리겠다"로 자연스럽게 수습 (실제 잘 마무리됨)</div>
-        <div class="item"><span class="item-bullet"></span>과 역할 배정은 현업과 다르게 줌 (소포실 근무자 → 영업과장 역할 부여). 현업과 동일한 과 역할은 안 주는 경향</div>
+    <div class="items">
+      <div class="item">
+        <div class="item-top"><span class="item-bullet"></span><span class="item-text">과 역할은 현업과 다르게 배정됨 (소포실 근무 → 영업과장 역할). 같은 현업 과 역할은 안 주는 경향</span></div>
+        <div class="src-row"><span class="src-tag src-jy" onclick="showSrc('김지영','직접 경험. 소포실인데 영업과장 역할 받았다고')"><span class="src-dot"></span>김지영</span></div>
       </div>
-    </div>
-
-    <div class="sub">
-      <h3>서류함기법 — 실제 출제 과제</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>과제 총 3개 / 1번(메인): 예금 10억 달성 계획서 — 실버상품·청년적금 중 택1 후 현황·문제점·개선방안·세부추진계획 작성</div>
-        <div class="item"><span class="item-bullet"></span>2번: 멘토링 vs 의사소통 프로그램 선택 — 민원 증가·직원 스트레스 해결 방안 / 3번: 간략 선택형 서술</div>
-        <div class="item good"><span class="item-bullet"></span>PC 작성 — 입실 후 바로 이름 바꾸기 먼저 할 것 (파일명이 수험번호·이름으로 저장됨). 중간 저장 수시로</div>
-        <div class="item good"><span class="item-bullet"></span>자료 배포 전 PC 화면에 과제 제목이 미리 보임 → 커서 내려 제목만 파악해두면 마음의 준비 가능</div>
-        <div class="item"><span class="item-bullet"></span>현황·문제점·개선사항을 자세히 적을수록 심화 질문으로 이어짐. 안 적으면 "왜 이걸 선택했어요?" 기초 질문부터 시작 → 출발점이 달라짐</div>
-        <div class="item warn"><span class="item-bullet"></span>선택한 상품(실버)에 맞지 않는 내용(청년층 공략)을 함께 써서 질문에서 막힘 → 작성 전 논리 한 번 확인할 것</div>
-        <div class="item"><span class="item-bullet"></span>형광펜·3색 볼펜은 시간상 거의 못 씀. 볼펜 2개 + 형광펜 1개면 충분. 고무골무 불필요 (PC 작업)</div>
+      <div class="item">
+        <div class="item-top"><span class="item-bullet"></span><span class="item-text">이번 기수 집단토론 과제: ①공익사업 선택(안심꾸러미 소포 등 중 택1) ②TFT 차출 1명 결정</span></div>
+        <div class="src-row"><span class="src-tag src-jy" onclick="showSrc('김지영','이번 기수 실제 출제 과제 직접 경험 후 서술')"><span class="src-dot"></span>김지영</span></div>
       </div>
-    </div>
-
-    <div class="sub">
-      <h3>역할연기 — 실제 출제 과제</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>우편팀장이 영업과장에게 상담 요청 — 거점 접수처 신사업 중 소포팀 픽업 미협조, 계약 해지 위기, 민원 폭주 상황</div>
-        <div class="item"><span class="item-bullet"></span>팀장이 힘들다며 다른 부서로 보내달라는 요구 포함</div>
-        <div class="item warn"><span class="item-bullet"></span>김지영 본인은 이 파트에서 멘붕이 와서 대답을 많이 못 했음 — 그럼에도 근소 차이로 합격</div>
-        <div class="item good"><span class="item-bullet"></span>발표(5분)는 잘했다는 평가 — 평소 우체국 발표 경험이 도움됨. 발표 경험이 있다면 이 파트는 강점으로 활용 가능</div>
-        <div class="item"><span class="item-bullet"></span>발표 시간 배분 목표: 1번 약 2분 30초, 2·3번 각 1분 15초 내외로 5분 이내 완료</div>
+      <div class="item">
+        <div class="item-top"><span class="item-bullet"></span><span class="item-text">이번 기수 서류함 과제: 1번 예금 10억 달성 계획서(실버상품 택1), 2번 멘토링 vs 의사소통 프로그램 선택</span></div>
+        <div class="src-row"><span class="src-tag src-jy" onclick="showSrc('김지영','이번 기수 실제 서류함 과제 3개 상세히 설명')"><span class="src-dot"></span>김지영</span></div>
       </div>
-    </div>
-
-    <div class="sub">
-      <h3>멘탈·컨디션 관리 (김지영 강조)</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>겉으로 떨리지 않았다는 평가였으나 속으로 긴장해서 답변이 끊김 → <strong>속 긴장이 답변 품질을 낮춤</strong></div>
-        <div class="item"><span class="item-bullet"></span>우왕찬심 복용 고려했으나 사전 테스트에서 두통 발생 → 가기 1주일 전에 소량 테스트 후 결정 권장</div>
-        <div class="item"><span class="item-bullet"></span>밥·티타임 때 조가 달라도 지방청 참가자들과 적극 대화 — 이 자리에서 과제 정보가 많이 나옴</div>
-        <div class="item good"><span class="item-bullet"></span>최종 조언: <strong>"편하게 갔다 온 사람들이 더 잘하더라. 멘탈이 제일 중요해. 너무 걱정하지 마."</strong></div>
+      <div class="item warn">
+        <div class="item-top"><span class="item-bullet"></span><span class="item-text">실버상품 선택했는데 보고서에 청년층 공략 내용 함께 써서 질의응답에서 막힘 — 선택과 근거의 논리 일관성 중요</span></div>
+        <div class="src-row"><span class="src-tag src-jy" onclick="showSrc('김지영','교수님이 실버 상품인데 청년층 공략이라고 하자 말문이 막혔다고. 아무 생각 없이 쓴 게 문제')"><span class="src-dot"></span>김지영</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-bullet"></span><span class="item-text">이번 기수 역할연기: 우편팀장이 영업과장에게 상담 — 거점 접수처 신사업 중 소포팀 픽업 미협조, 민원 폭주, 다른 부서 복귀 요청</span></div>
+        <div class="src-row"><span class="src-tag src-jy" onclick="showSrc('김지영','이번 기수 역할연기 실제 과제 상세 서술')"><span class="src-dot"></span>김지영</span></div>
+      </div>
+      <div class="item good">
+        <div class="item-top"><span class="item-bullet"></span><span class="item-text">우왕찬심 등 보조제는 1주일 전 소량 테스트 권장. 본인은 두통 발생해 안 먹었음</span></div>
+        <div class="src-row"><span class="src-tag src-jy" onclick="showSrc('김지영','반병 좀 더 먹었더니 머리 아팠다고. 미리 테스트해보라고 권유')"><span class="src-dot"></span>김지영</span></div>
       </div>
     </div>
   </div>
@@ -724,85 +614,70 @@
       <h2>조은희 강사 — 역량평가 구조 & 핵심 원리</h2>
       <div class="section-rule"></div>
     </div>
-
-    <div class="summary-box" style="margin-bottom:28px;border-color:#6060c0;background:#eeeeff;">
-      <p style="color:#222260;">일반 후기와 달리 <strong>평가위원 경험을 가진 강사</strong>의 강의 녹취. 왜 그렇게 해야 하는지 원리까지 설명해주는 내용. 후기들과 함께 읽으면 이해도가 훨씬 높아짐.</p>
+    <div class="summary-box" style="margin-bottom:24px;border-color:#6060c0;background:#eeeeff;">
+      <p style="color:#222260;">평가위원 경험을 가진 강사의 강의 녹취. 왜 그렇게 해야 하는지 원리까지 설명. 후기들과 함께 읽으면 이해도가 훨씬 높아짐.</p>
     </div>
-
     <div class="sub">
       <h3>5대 핵심 역량 — 평가 기준 전체 구조</h3>
       <div class="items">
-        <div class="item"><span class="item-bullet"></span><strong>① 사업관리 역량</strong> — 환경 분석 → 사업계획 수립 → 목표 달성을 위한 점검·모니터링·개선. 1일차(집단토론)와 2일차(서류함)에서 평가</div>
-        <div class="item"><span class="item-bullet"></span><strong>② 조직관리 역량</strong> — 인적자원 적재적소 배치, 팀워크 조성, 효율적 조직 운영. 1일차(집단토론)에서 평가</div>
-        <div class="item"><span class="item-bullet"></span><strong>③ 갈등관리 역량</strong> — 직원 간 갈등 원인 파악 → 이해관계 조정 → 성과로 연결. 3일차(역할수행)에서 평가</div>
-        <div class="item"><span class="item-bullet"></span><strong>④ 동기부여 역량</strong> — 비전·미션 공유, 격려·소통·배려로 직원이 주도적으로 일하게 함. 3일차(역할수행)에서 평가</div>
-        <div class="item"><span class="item-bullet"></span><strong>⑤ 의사결정 역량</strong> — 다양한 대안을 다각도로 검토·비교분석 후 근거 있는 결정. 2일차(서류함)에서 평가</div>
-        <div class="item good"><span class="item-bullet"></span>모든 역량의 공통 목적: <strong>조직의 성과 달성</strong>. 답변·보고서·발언 모두 결국 "이게 성과에 어떻게 연결되는가"로 수렴해야 함</div>
-      </div>
-    </div>
-
-    <div class="sub">
-      <h3>배점 구조 & 일정</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>1일차(집단토론) <strong>30점</strong> — 조직관리·의사결정 역량 / 2일차(서류함기법) <strong>30점</strong> — 사업관리·의사결정 역량 / 3일차(역할수행) <strong>40점</strong> — 갈등관리·동기부여 역량</div>
-        <div class="item"><span class="item-bullet"></span>평가 방식: 관찰 → 기록 → 분류 → 평가. 역량을 보여주지 못하면 기록 자체가 안 되어 점수를 받을 수 없음</div>
-        <div class="item"><span class="item-bullet"></span>하루가 끝날 때마다 피드백(눈물의 피드백). 1일차 부족했으면 2일차에 만회, 2일차 부족했으면 40점짜리 3일차에 집중</div>
-      </div>
-    </div>
-
-    <div class="sub">
-      <h3>집단토론 — 강사가 직접 설명한 핵심 원리</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>과제 15~20페이지 배부 → 30분 숙지(연습지에 메모) → 자료·연습지 회수 → 1조 5분 재검토 후 30분 토론 → 2조 동일 반복</div>
-        <div class="item"><span class="item-bullet"></span>평가위원은 30분 동안 <strong>절대 개입하지 않음</strong>. 세 과장끼리 알아서 방향을 잡아야 함 — 역할수행과 가장 큰 차이점</div>
-        <div class="item"><span class="item-bullet"></span>평가위원 2명이 V자 대형으로 앉아 언어적·비언어적 행동 모두 관찰. 눈빛·고개 방향·경청 여부까지 기록됨</div>
-        <div class="item"><span class="item-bullet"></span>토론 시작 전 연습지에 반드시 적을 것: "오늘은 2030년 X월 X일, 나는 ○○과장이다" — 역할 혼동 방지</div>
-        <div class="item good"><span class="item-bullet"></span>평가자가 개입 못 하므로 <strong>세 명이 잘못된 방향으로 가면 그냥 끝남</strong> → 내가 "이 방향 맞나요?"라고 돌려놓는 역할을 해야 함</div>
-      </div>
-    </div>
-
-    <div class="sub">
-      <h3>집단토론 — 감점·탈락 패턴 (강사 실제 관찰 사례)</h3>
-      <div class="items">
-        <div class="item warn"><span class="item-bullet"></span>상대 발언 중 고개 숙이고 자기 과제만 보는 것 → 경청 미흡으로 기록, 나중에 이미 나온 얘기 반복하게 됨</div>
-        <div class="item warn"><span class="item-bullet"></span>시간 촉박하다고 "제가 양보하겠습니다" → 근거 없는 결정으로 최하점. 직원들에게도 동기부여 안 된다는 시각으로 평가됨</div>
-        <div class="item warn"><span class="item-bullet"></span>"지난번 영업과 갔으니 이번엔 물류과 차례" → 과제 근거 없는 발언, 감점</div>
-        <div class="item warn"><span class="item-bullet"></span>기준 정하자고 했더니 바로 "우리 과 홍길동이 적임자" → 동문서답. 기준 논의 없이 결론부터 주장하면 안 됨</div>
-        <div class="item warn"><span class="item-bullet"></span>"청에서 천만원 삭감하라 했는데 500만원으로 조정하자" → 과제 범위 밖. 주어진 조건은 바꿀 수 없음</div>
-        <div class="item warn"><span class="item-bullet"></span>20분에 일찍 합의하고 10분 남음 → 남은 시간이 역량 보여줄 마지막 기회인데 그냥 종료하면 셋 다 손해</div>
-        <div class="item warn"><span class="item-bullet"></span>특정 과장의 발언량이 현저히 적으면 기여도 낮음으로 기록 → 저점 불가피. 발언 기회를 줘도 과제 파악이 안 되어 있으면 발언 자체가 불가능</div>
-      </div>
-    </div>
-
-    <div class="sub">
-      <h3>서류함기법 — 강사 설명 핵심</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>보고서 3장 80분 작성 → 점심시간에 평가위원에게 제공 → 위원이 점심 먹으며 미리 분석 → 오후에 5분 발표 + 15분 질의응답</div>
-        <div class="item"><span class="item-bullet"></span>PC 작성 시 <strong>오타 주의</strong> — 실제로 이름 혼동, 근거-결론 불일치 사례 다수. 마지막 1~2분 반드시 검토</div>
-        <div class="item"><span class="item-bullet"></span>보고서에 현황·문제점·개선방안을 자세히 쓸수록 질문 수준이 높아짐 → 높은 점수 출발점. 아무것도 안 쓰면 기초 질문부터 시작해 점수 올리기 어려움</div>
-        <div class="item"><span class="item-bullet"></span>3번 과제를 백지로 내도 평가위원이 질의응답에서 반드시 물어봄. 다만 처음부터 쓴 사람보다 출발점이 낮음</div>
-        <div class="item warn"><span class="item-bullet"></span>지역 현황·배경 설명을 반 페이지씩 장황하게 쓰는 것 금지. 평가위원이 궁금한 건 "그래서 어떻게 할 것인가"</div>
-        <div class="item warn"><span class="item-bullet"></span>역할수행 보고서에 "팀장님 안녕하세요, 요즘 고생 많으시죠?" 같은 편지체 작성 금지 → 개조식으로 문제점·해결방안 작성</div>
-      </div>
-    </div>
-
-    <div class="sub">
-      <h3>역할수행 — 강사가 강조한 주의사항</h3>
-      <div class="items">
-        <div class="item"><span class="item-bullet"></span>가면을 쓴 건 부하직원이지만 실제로는 평가위원 — 반말 절대 금지. "이 팀장 어서와" 한 마디로 20분이 지옥이 될 수 있음</div>
-        <div class="item"><span class="item-bullet"></span>현실 우체국 상황을 과제에 끌어들이면 안 됨. 나이·직급도 과제에 명시된 것만 적용. 직급이 낮아도 나이가 많을 수 있음</div>
-        <div class="item"><span class="item-bullet"></span>갈등 해결책으로 "저녁에 회식합시다, 제가 살게요" → 실제 가장 많이 나오는 NG 패턴. 갈등 원인 파악 후 이해관계 조정이 정답</div>
-        <div class="item good"><span class="item-bullet"></span>질의응답에서 어려운 질문에 끝까지 답을 못했어도 그 직전까지 대답한 것은 점수로 인정됨 — "친절의 미흡, 압박의 우수"가 의미하는 것</div>
-        <div class="item good"><span class="item-bullet"></span>평가위원이 계속 어려운 질문을 하는 건 점수를 올리려는 것 — 압박이 심할수록 내가 잘하고 있다는 신호일 수 있음</div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text"><strong>① 사업관리</strong> (1·2일차) — 환경 분석 → 사업계획 수립 → 점검·모니터링·개선</span></div>
+          <div class="src-row"><span class="src-tag src-lec" onclick="showSrc('조은희 강사','고성과자 과장님의 일하는 방식. 목표 달성을 위해 점검하고 모니터링하고 지원하는 능력')"><span class="src-dot"></span>조은희 강사</span></div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text"><strong>② 조직관리</strong> (1일차) — 인적자원 적재적소 배치, 팀워크 조성, 효율적 조직 운영</span></div>
+          <div class="src-row"><span class="src-tag src-lec" onclick="showSrc('조은희 강사','물적 자원은 잘 안 나옴. 사람·인적자원 중심. 결국 성과로 연결되게 하는 것')"><span class="src-dot"></span>조은희 강사</span></div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text"><strong>③ 갈등관리</strong> (3일차) — 갈등 원인 파악 → 이해관계 조정 → 성과 연결</span></div>
+          <div class="src-row"><span class="src-tag src-lec" onclick="showSrc('조은희 강사','야 잘해봐가 아니라 원인 파악 후 이해관계 조정해서 다 잘 지낼 수 있도록 하는 것')"><span class="src-dot"></span>조은희 강사</span></div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text"><strong>④ 동기부여</strong> (3일차) — 비전·미션 공유, 격려·소통·배려로 직원이 주도적으로 일하게 함</span></div>
+          <div class="src-row"><span class="src-tag src-lec" onclick="showSrc('조은희 강사','직원이 아 과장님 말씀대로 하면 성과가 나겠다, 다시 열심히 해볼래 라고 느끼게 하는 것')"><span class="src-dot"></span>조은희 강사</span></div>
+        </div>
+        <div class="item">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text"><strong>⑤ 의사결정</strong> (2일차) — 다양한 대안을 다각도로 검토·비교분석 후 근거 있는 결정</span></div>
+          <div class="src-row"><span class="src-tag src-lec" onclick="showSrc('조은희 강사','안이 3~4개 나오면 충분히 검토하고 최상의 근거를 가지고 수행해야 직원들이 따라서 열심히 함')"><span class="src-dot"></span>조은희 강사</span></div>
+        </div>
+        <div class="item good">
+          <div class="item-top"><span class="item-bullet"></span><span class="item-text">모든 역량의 공통 목적: <strong>조직의 성과 달성</strong>. 모든 답변·보고서·발언이 "이게 성과에 어떻게 연결되는가"로 수렴해야 함</span></div>
+          <div class="src-row"><span class="src-tag src-lec" onclick="showSrc('조은희 강사','5가지 역량 설명 후 결론. 역량은 조직의 목표 달성에 기여하는 고성과자의 행동 특성이라고 정의')"><span class="src-dot"></span>조은희 강사</span></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
   <div class="footer">
-    ※ 이 문서는 통화 녹음 3건(김영숙·정기홍·임은영)을 바탕으로 작성한 비공식 학습 정리 자료입니다. 기수·시기·개인에 따라 과제 내용이 달라질 수 있으므로 참고 자료로만 활용하세요.
+    ※ 이 문서는 통화 녹음 4건(김영숙·정기홍·임은영·김지영)과 조은희 강사 강의 녹취를 바탕으로 작성한 비공식 학습 정리 자료입니다. 기수·시기·개인에 따라 과제 내용이 달라질 수 있으므로 참고 자료로만 활용하세요.
   </div>
-
 </div>
+
+<script>
+  // 출처 팝오버
+  var popupTimer;
+  function showSrc(name, desc) {
+    var popup = document.getElementById('popup');
+    document.getElementById('popup-name').textContent = name;
+    document.getElementById('popup-desc').textContent = desc;
+    popup.classList.add('show');
+    clearTimeout(popupTimer);
+    popupTimer = setTimeout(function(){ popup.classList.remove('show'); }, 3500);
+  }
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.src-tag')) {
+      document.getElementById('popup').classList.remove('show');
+    }
+  });
+
+  // 목차
+  function toggleToc() { document.getElementById('toc-panel').classList.toggle('open'); }
+  function closeToc() { document.getElementById('toc-panel').classList.remove('open'); }
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#toc-btn') && !e.target.closest('#toc-panel')) {
+      document.getElementById('toc-panel').classList.remove('open');
+    }
+  });
+</script>
 </body>
 </html>

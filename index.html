@@ -633,59 +633,118 @@ var SRC_LABELS = {
 };
 var cache = {};
 
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.hl-tag').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var key = el.getAttribute('data-key');
+      var name = el.getAttribute('data-name');
+      var quote = el.getAttribute('data-quote');
+      var color = el.style.color;
+      var itemText = el.closest('.item-text');
+      var box = itemText.querySelector('.quote-box');
 
+      var isOpen = (box.style.display === 'block');
+      document.querySelectorAll('.quote-box').forEach(function(b) {
+        b.style.display = 'none';
+        b.innerHTML = '';
+      });
+      if (isOpen) return;
 
+      box.style.borderLeftColor = color;
 
+      var header = document.createElement('div');
+      header.className = 'quote-box-header';
 
-document.querySelectorAll('.hl-tag').forEach(function(el) {
-  el.addEventListener('click', function(e) {
-    e.stopPropagation();
-    var key = el.dataset.key;
-    var name = el.dataset.name;
-    var quote = el.dataset.quote;
-    var color = el.style.color;
-    var box = el.closest('.item-text').querySelector('.quote-box');
-    var isOpen = box.style.display === 'block';
-    document.querySelectorAll('.quote-box').forEach(function(b){ b.style.display='none'; b.innerHTML=''; });
-    if (isOpen) return;
-    box.style.borderLeftColor = color;
-    box.innerHTML =
-      '<div class="quote-box-header">' +
-        '<span class="q-name" style="color:'+color+'">'+name+'</span>' +
-        '<button class="full-btn" data-key="'+key+'" data-name="'+name+'">전체 보기 →</button>' +
-      '</div>' +
-      '<div class="q-text">“'+quote+'”</div>' +
-      '<div class="full-panel" style="display:none;margin-top:10px;background:var(--paper);border:1px solid var(--border);border-radius:8px;overflow:hidden">' +
-        '<div class="full-panel-header">' +
-          '<span class="full-panel-title" style="color:'+color+'">'+SRC_LABELS[key]+'</span>' +
-          '<button class="close-btn" onclick="this.closest('.full-panel').style.display='none'">✕</button>' +
-        '</div>' +
-        '<div class="full-panel-body" style="padding:14px 16px;font-size:12px;line-height:1.85;color:var(--muted);max-height:380px;overflow-y:auto;white-space:pre-wrap"></div>' +
-      '</div>';
-    box.querySelector('.full-btn').addEventListener('click', function() {
-      var panel = box.querySelector('.full-panel');
-      var body = box.querySelector('.full-panel-body');
-      if (panel.style.display === 'block') { panel.style.display='none'; return; }
-      panel.style.display = 'block';
-      if (cache[key]) { body.textContent = cache[key]; return; }
-      body.textContent = '불러오는 중...';
-      fetch(BASE + key + '.txt')
-        .then(function(r){ return r.text(); })
-        .then(function(t){ cache[key]=t; body.textContent=t; })
-        .catch(function(){ body.textContent='원문을 불러올 수 없습니다.'; });
+      var qname = document.createElement('span');
+      qname.className = 'q-name';
+      qname.style.color = color;
+      qname.textContent = name;
+
+      var fbtn = document.createElement('button');
+      fbtn.className = 'full-btn';
+      fbtn.textContent = '전체 보기 →';
+
+      header.appendChild(qname);
+      header.appendChild(fbtn);
+
+      var qtext = document.createElement('div');
+      qtext.className = 'q-text';
+      qtext.textContent = '\u201c' + quote + '\u201d';
+
+      var panel = document.createElement('div');
+      panel.className = 'full-panel';
+      panel.style.display = 'none';
+      panel.style.marginTop = '10px';
+      panel.style.background = '#fffdf8';
+      panel.style.border = '1px solid #ddd9d0';
+      panel.style.borderRadius = '8px';
+      panel.style.overflow = 'hidden';
+
+      var panelHeader = document.createElement('div');
+      panelHeader.className = 'full-panel-header';
+
+      var panelTitle = document.createElement('span');
+      panelTitle.className = 'full-panel-title';
+      panelTitle.style.color = color;
+      panelTitle.textContent = SRC_LABELS[key] || key;
+
+      var closeBtn = document.createElement('button');
+      closeBtn.className = 'close-btn';
+      closeBtn.textContent = '✕';
+      closeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        panel.style.display = 'none';
+      });
+
+      panelHeader.appendChild(panelTitle);
+      panelHeader.appendChild(closeBtn);
+
+      var panelBody = document.createElement('div');
+      panelBody.className = 'full-panel-body';
+
+      panel.appendChild(panelHeader);
+      panel.appendChild(panelBody);
+
+      box.innerHTML = '';
+      box.appendChild(header);
+      box.appendChild(qtext);
+      box.appendChild(panel);
+      box.style.display = 'block';
+
+      fbtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (panel.style.display === 'block') {
+          panel.style.display = 'none';
+          return;
+        }
+        panel.style.display = 'block';
+        if (cache[key]) {
+          panelBody.textContent = cache[key];
+          return;
+        }
+        panelBody.textContent = '불러오는 중...';
+        fetch(BASE + key + '.txt')
+          .then(function(r) { return r.text(); })
+          .then(function(t) { cache[key] = t; panelBody.textContent = t; })
+          .catch(function() { panelBody.textContent = '원문을 불러올 수 없습니다.'; });
+      });
     });
-    box.style.display = 'block';
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.hl-tag') && !e.target.closest('.quote-box')) {
+      document.querySelectorAll('.quote-box').forEach(function(b) {
+        b.style.display = 'none';
+        b.innerHTML = '';
+      });
+    }
   });
 });
-document.addEventListener('click', function(e){
-  if (!e.target.closest('.hl-tag') && !e.target.closest('.quote-box')) {
-    document.querySelectorAll('.quote-box').forEach(function(b){ b.style.display='none'; b.innerHTML=''; });
-  }
-});
 
-function toggleToc(){ document.getElementById('toc-panel').classList.toggle('open'); }
-function closeToc(){ document.getElementById('toc-panel').classList.remove('open'); }
-document.addEventListener('click', function(e){
+function toggleToc() { document.getElementById('toc-panel').classList.toggle('open'); }
+function closeToc() { document.getElementById('toc-panel').classList.remove('open'); }
+document.addEventListener('click', function(e) {
   if (!e.target.closest('#toc-btn') && !e.target.closest('#toc-panel'))
     document.getElementById('toc-panel').classList.remove('open');
 });

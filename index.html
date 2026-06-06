@@ -119,6 +119,14 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
   .lec-tab{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:none;cursor:pointer;font-size:12.5px;color:var(--muted);font-family:inherit;transition:all .15s}
   .lec-tab.active{background:var(--b5);color:var(--c5);border-color:var(--c5);font-weight:600}
   .lec-tab:active{opacity:.7}
+
+  /* 최상단 탭 */
+  .page-tabs{display:flex;gap:0;margin-bottom:32px;border-bottom:2px solid var(--ink)}
+  .page-tab{padding:10px 24px;font-size:14px;font-weight:500;cursor:pointer;border:none;background:none;font-family:inherit;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s}
+  .page-tab.active{color:var(--ink);border-bottom-color:var(--ink);font-weight:700}
+  .page-section{display:none}
+  .page-section.active{display:block}
+
 </style>
 </head>
 <body>
@@ -136,6 +144,12 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
 
 <div class="page">
 
+<div class="page-tabs">
+  <button class="page-tab active" onclick="switchPage(this,'pg-review')">📋 후기 정리</button>
+  <button class="page-tab" onclick="switchPage(this,'pg-lecture')">🎓 조은희 강사 강의</button>
+</div>
+
+<div class="page-section active" id="pg-review">
 <div class="hdr">
   <div class="hdr-label">우정사업본부 5급 승진 대기자 / 내부 학습 자료</div>
   <h1>역량평가 시험 후기 정리<br><span style="font-size:17px;color:var(--muted)">— 통화 녹음 4건 + 강사 강의 녹취</span></h1>
@@ -448,6 +462,22 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
       <span class="hl hl-tag" style="background:var(--b5);color:var(--c5);border-color:var(--c5)" data-key="lec" data-name="조은희 강사" data-quote="&quot;대답을 내가 지속적으로 잘하고 있는데 맨 마지막에 질문은 너무 어려워서 못했다. 그러면 내가 그 상위의 평가를 받지 못했지만 그 직전까지 대답한 건 점수를 받는 거죠.&quot;">조은희 강사</span>
       <div class="quote-box"></div>
     </span></div></div>
+
+    <div class="item"><div class="item-body"><span class="bullet"></span><span class="item-text">
+      이번 기수 역할연기 (정기홍): 영업과장으로 우편팀장 상담 — 거점 접수처 신사업 추진 중 소포팀 픽업 미협조, 계약 해지 위기, 자괴감·이직 희망 호소
+      <span class="hl hl-tag" style="background:var(--b2);color:var(--c2);border-color:var(--c2)" data-key="jung" data-name="정기홍" data-quote="우편팀장은 그런 거예요. 픽업 관련해서 그런 문제가 너무 생기고 소포팀에서 인원 대응도 안 해줘. 저는 그 소포팀장하고 갈등, 그다음에 내가 나는 일을 좀 열심히 잘하고 싶은데 이 자괴감이 듭니다. 내가 무능해서 나는 딴 데로 가고 싶습니다.">정기홍</span>
+      <div class="quote-box"></div>
+    </span></div></div>
+    <div class="item"><div class="item-body"><span class="bullet"></span><span class="item-text">
+      역할연기 해결책도 자료 안에 있음 — 경험 부족 인정 후 교육·벤치마킹 제안. 구체적 대안을 제시해야 함
+      <span class="hl hl-tag" style="background:var(--b2);color:var(--c2);border-color:var(--c2)" data-key="jung" data-name="정기홍" data-quote="해결책도 이제 거기에 그 상황이 또 다 나와 있어요. 니가 경험이 아직 없어서 그런데 조금 익숙해지면 충분히 잘할 수 있을 거다. 교육을 한번 마케팅 교육이랄까 이런 교육도 좀 보내줄 수 있도록 내가 최대한 노력을 하고 다른 우체국에서 잘하는 사안도 좀 벤치마킹도 하고.">정기홍</span>
+      <div class="quote-box"></div>
+    </span></div></div>
+    <div class="item warn"><div class="item-body"><span class="bullet"></span><span class="item-text">
+      구체적 근거 없이 합의만 하면 감점 — "500만원 줄이겠다는데 어떻게 줄일 건지 근거가 없다" 식 지적
+      <span class="hl hl-tag" style="background:var(--b2);color:var(--c2);border-color:var(--c2)" data-key="jung" data-name="정기홍" data-quote="대안 제시 없이 그냥 합의만 했다. 뭐 이런 지적사항이 많았어요. 예를 들어서 영업과 직원을 활용해서 이렇게 한다든가 아니면 어떤 자료를 활용해서 어떤 방법으로 구체적인 대안 제시가 있어야 되는데.">정기홍</span>
+      <div class="quote-box"></div>
+    </span></div></div>
   </div></div>
 </div>
 
@@ -562,6 +592,9 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
 <hr class="divider">
 
 <!-- ════ 조은희 강사 ════ -->
+</div><!-- /pg-review -->
+
+<div class="page-section" id="pg-lecture">
 <div class="sec" id="s-lec">
   <div class="sec-hdr"><span class="sec-num" style="background:var(--b5);color:var(--c5)">강사 강의</span><h2>조은희 강사 — 역량평가 구조 & 핵심 원리</h2><div class="sec-line"></div></div>
   <div class="summary" style="border-color:var(--c5);background:var(--b5)"><p style="color:#202060">평가위원 경험을 가진 강사의 강의 녹취. 왜 그렇게 해야 하는지 원리까지 설명. 후기들과 함께 읽으면 이해도가 훨씬 높아짐.</p></div>
@@ -764,10 +797,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
 
 </div>
 <div class="footer">※ 이 문서는 통화 녹음 4건(김영숙·정기홍·임은영·김지영)과 조은희 강사 강의 녹취를 바탕으로 작성한 비공식 학습 정리 자료입니다. 기수·시기·개인에 따라 과제 내용이 달라질 수 있으므로 참고 자료로만 활용하세요.</div>
-</div>
+</div><!-- /pg-lecture -->
+</div><!-- /page -->
 
 <script>
-
 var BASE = 'https://raw.githubusercontent.com/gounpark/yeokyang-notes/main/src/';
 var SRC_LABELS = {
   kim: '김영숙 (25.06.26 약 89분)',
@@ -792,31 +825,53 @@ function getContext(fullText, quote) {
       if (blocks[i].indexOf(keyword) !== -1) { found = i; break; }
     }
   }
-  if (found === -1) return { blocks: blocks, found: -1, start: 0, end: Math.min(10, blocks.length-1) };
-  var start = Math.max(0, found - 3);
-  var end = Math.min(blocks.length - 1, found + 3);
-  return { blocks: blocks, found: found, start: start, end: end };
+  return { blocks: blocks, found: found,
+    start: Math.max(0, found - 4),
+    end: Math.min(blocks.length - 1, found === -1 ? 8 : found + 4) };
 }
 
-function renderContext(result, panelBody, showAll) {
+function renderContext(result, panelBody) {
   panelBody.innerHTML = '';
-  var blocks = result.blocks;
-  var start = showAll ? 0 : result.start;
-  var end = showAll ? blocks.length - 1 : result.end;
-  for (var i = start; i <= end; i++) {
-    var block = blocks[i];
+  var s = result.found === -1 ? 0 : result.start;
+  var e = result.end;
+  // 위쪽 문맥
+  for (var i = s; i <= e; i++) {
+    var block = result.blocks[i];
     if (!block.trim()) continue;
     var div = document.createElement('div');
-    div.style.cssText = 'padding:8px 10px;border-radius:6px;margin-bottom:5px;font-size:12px;line-height:1.8;font-family:inherit;white-space:pre-wrap';
-    if (!showAll && i === result.found) {
-      div.style.background = '#fef9e7';
-      div.style.border = '1.5px solid #e8c800';
-      div.style.color = '#1c1a16';
+    div.style.cssText = 'padding:7px 10px;border-radius:6px;margin-bottom:4px;font-size:12px;line-height:1.8;white-space:pre-wrap;font-family:inherit';
+    if (i === result.found) {
+      div.style.cssText += ';background:#fef9e7;border:1.5px solid #e8c800;color:#1c1a16;font-weight:500';
     } else {
-      div.style.color = '#7a7568';
+      div.style.color = '#9a9288';
     }
     div.textContent = block;
     panelBody.appendChild(div);
+  }
+  // 더 보기 버튼
+  if (result.found !== -1 && (result.start > 0 || result.end < result.blocks.length - 1)) {
+    var moreBtn = document.createElement('button');
+    moreBtn.className = 'full-btn';
+    moreBtn.textContent = '전체 원문 보기 ↓';
+    moreBtn.style.cssText = 'margin-top:8px;width:100%;text-align:center';
+    moreBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      panelBody.innerHTML = '';
+      for (var i = 0; i < result.blocks.length; i++) {
+        var b = result.blocks[i];
+        if (!b.trim()) continue;
+        var d = document.createElement('div');
+        d.style.cssText = 'padding:7px 10px;border-radius:6px;margin-bottom:4px;font-size:12px;line-height:1.8;white-space:pre-wrap;font-family:inherit';
+        if (i === result.found) {
+          d.style.cssText += ';background:#fef9e7;border:1.5px solid #e8c800;color:#1c1a16;font-weight:500';
+        } else {
+          d.style.color = '#9a9288';
+        }
+        d.textContent = b;
+        panelBody.appendChild(d);
+      }
+    });
+    panelBody.appendChild(moreBtn);
   }
 }
 
@@ -846,22 +901,13 @@ document.addEventListener('DOMContentLoaded', function() {
       qname.style.color = color;
       qname.textContent = name;
 
-      var btnWrap = document.createElement('div');
-      btnWrap.style.cssText = 'display:flex;gap:6px';
-
       var ctxBtn = document.createElement('button');
       ctxBtn.className = 'full-btn';
-      ctxBtn.textContent = '앞뒤 문맥';
+      ctxBtn.textContent = '원문에서 보기';
       ctxBtn.style.fontWeight = '600';
 
-      var fullBtn = document.createElement('button');
-      fullBtn.className = 'full-btn';
-      fullBtn.textContent = '전체 보기';
-
-      btnWrap.appendChild(ctxBtn);
-      btnWrap.appendChild(fullBtn);
       header.appendChild(qname);
-      header.appendChild(btnWrap);
+      header.appendChild(ctxBtn);
 
       var qtext = document.createElement('div');
       qtext.className = 'q-text';
@@ -876,6 +922,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var panelTitle = document.createElement('span');
       panelTitle.className = 'full-panel-title';
       panelTitle.style.color = color;
+      panelTitle.textContent = SRC_LABELS[key] || key;
 
       var closeBtn = document.createElement('button');
       closeBtn.className = 'close-btn';
@@ -900,32 +947,25 @@ document.addEventListener('DOMContentLoaded', function() {
       box.appendChild(panel);
       box.style.display = 'block';
 
-      function openPanel(showAll) {
-        var mode = showAll ? 'all' : 'ctx';
-        if (panel.style.display === 'block' && panel._mode === mode) {
-          panel.style.display = 'none';
+      ctxBtn.addEventListener('click', function(e2) {
+        e2.stopPropagation();
+        if (panel.style.display === 'block') { panel.style.display = 'none'; return; }
+        panel.style.display = 'block';
+        if (cache[key]) {
+          renderContext(getContext(cache[key], quote), panelBody);
+          panel.scrollIntoView({behavior:'smooth', block:'nearest'});
           return;
         }
-        panel._mode = mode;
-        panelTitle.textContent = (showAll ? '원문 전체 — ' : '앞뒤 문맥 — ') + (SRC_LABELS[key] || key);
-        panel.style.display = 'block';
-
-        function render(text) {
-          var result = getContext(text, quote);
-          renderContext(result, panelBody, showAll);
-          if (!showAll) panel.scrollIntoView({behavior:'smooth', block:'nearest'});
-        }
-
-        if (cache[key]) { render(cache[key]); return; }
         panelBody.textContent = '불러오는 중...';
         fetch(BASE + key + '.txt')
           .then(function(r) { return r.text(); })
-          .then(function(t) { cache[key] = t; render(t); })
+          .then(function(t) {
+            cache[key] = t;
+            renderContext(getContext(t, quote), panelBody);
+            panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+          })
           .catch(function() { panelBody.textContent = '원문을 불러올 수 없습니다.'; });
-      }
-
-      ctxBtn.addEventListener('click', function(e2) { e2.stopPropagation(); openPanel(false); });
-      fullBtn.addEventListener('click', function(e2) { e2.stopPropagation(); openPanel(true); });
+      });
     });
   });
 
@@ -938,9 +978,18 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+function switchPage(btn, pgId) {
+  document.querySelectorAll('.page-tab').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelectorAll('.page-section').forEach(function(s){ s.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById(pgId).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
 function switchTab(btn, tabId) {
-  document.querySelectorAll('.lec-tab').forEach(function(b){ b.classList.remove('active'); });
-  document.querySelectorAll('.lec-content').forEach(function(c){ c.style.display='none'; });
+  var sec = btn.closest('.sec');
+  sec.querySelectorAll('.lec-tab').forEach(function(b){ b.classList.remove('active'); });
+  sec.querySelectorAll('.lec-content').forEach(function(c){ c.style.display='none'; });
   btn.classList.add('active');
   document.getElementById(tabId).style.display = 'block';
 }
@@ -951,7 +1000,6 @@ document.addEventListener('click', function(e) {
   if (!e.target.closest('#toc-btn') && !e.target.closest('#toc-panel'))
     document.getElementById('toc-panel').classList.remove('open');
 });
-
 </script>
 </body>
 </html>

@@ -634,7 +634,7 @@ var SRC_LABELS = {
 var cache = {};
 
 function toggleQuote(el, srcKey, srcName, quote) {
-  var box = el.parentElement.querySelector('.quote-box');
+  var box = el.closest('.item-text').querySelector('.quote-box');
   var isOpen = box.style.display === 'block';
   // 모든 박스 닫기
   document.querySelectorAll('.quote-box').forEach(function(b){ b.style.display='none'; b.innerHTML=''; });

@@ -717,11 +717,11 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
 <div style="font-size:13px;line-height:1.7;color:var(--c1);opacity:.8">역량평가를 이미 경험한 실장님이 동료에게 전수해주는 통화. 3일 전 과정 전체를 가장 상세하게 설명. 실전 팁이 풍부하고 피드백에서 직접 들은 내용까지 공유.</div>
 </div>
 <div class="subtabs" id="st-kim">
-<button class="subtab active" onclick="switchSub(this,'kim-0')">기본 구조</button>
-<button class="subtab " onclick="switchSub(this,'kim-1')">집단토론</button>
-<button class="subtab " onclick="switchSub(this,'kim-2')">서류함기법</button>
-<button class="subtab " onclick="switchSub(this,'kim-3')">역할연기</button>
-<button class="subtab " onclick="switchSub(this,'kim-4')">팁 & 멘탈</button>
+<button class="subtab active" data-tab="kim-0">기본 구조</button>
+<button class="subtab " data-tab="kim-1">집단토론</button>
+<button class="subtab " data-tab="kim-2">서류함기법</button>
+<button class="subtab " data-tab="kim-3">역할연기</button>
+<button class="subtab " data-tab="kim-4">팁 & 멘탈</button>
 </div>
 <div class="subcontent" id="kim-0" style="display:block">
 <div class="items">
@@ -812,11 +812,11 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
 <div style="font-size:13px;line-height:1.7;color:var(--c2);opacity:.8">집단토론 예산 삭감 과제와 역할연기 우편팀장 상담 과제를 직접 경험. 지방청 현장 정보 수집의 중요성, 구체적 대안 없이 합의만 하면 안 된다는 점 강조.</div>
 </div>
 <div class="subtabs" id="st-jung">
-<button class="subtab active" onclick="switchSub(this,'jung-0')">기본 구조</button>
-<button class="subtab " onclick="switchSub(this,'jung-1')">집단토론</button>
-<button class="subtab " onclick="switchSub(this,'jung-2')">서류함기법</button>
-<button class="subtab " onclick="switchSub(this,'jung-3')">역할연기</button>
-<button class="subtab " onclick="switchSub(this,'jung-4')">팁 & 멘탈</button>
+<button class="subtab active" data-tab="jung-0">기본 구조</button>
+<button class="subtab " data-tab="jung-1">집단토론</button>
+<button class="subtab " data-tab="jung-2">서류함기법</button>
+<button class="subtab " data-tab="jung-3">역할연기</button>
+<button class="subtab " data-tab="jung-4">팁 & 멘탈</button>
 </div>
 <div class="subcontent" id="jung-0" style="display:block">
 <div class="items">
@@ -895,10 +895,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
 <div style="font-size:13px;line-height:1.7;color:var(--c3);opacity:.8">신규 FC 유치·포상 방식·갈등 해결 과제 경험. 서류함 발표 때 타이머 오류로 멘탈이 털렸지만 통과. 역할연기 세 가지 주제를 자연스럽게 연결하는 방법 상세히 설명.</div>
 </div>
 <div class="subtabs" id="st-lim">
-<button class="subtab active" onclick="switchSub(this,'lim-0')">집단토론</button>
-<button class="subtab " onclick="switchSub(this,'lim-1')">서류함기법</button>
-<button class="subtab " onclick="switchSub(this,'lim-2')">역할연기</button>
-<button class="subtab " onclick="switchSub(this,'lim-3')">팁 & 멘탈</button>
+<button class="subtab active" data-tab="lim-0">집단토론</button>
+<button class="subtab " data-tab="lim-1">서류함기법</button>
+<button class="subtab " data-tab="lim-2">역할연기</button>
+<button class="subtab " data-tab="lim-3">팁 & 멘탈</button>
 </div>
 <div class="subcontent" id="lim-0" style="display:block">
 <div class="items">
@@ -965,10 +965,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
 <div style="font-size:13px;line-height:1.7;color:var(--c4);opacity:.8">역할연기에서 멘붕이 왔지만 "근소한 차이로 합격". 이번 기수 실제 출제 과제 내용이 가장 구체적으로 담겨 있음. 멘탈 관리가 핵심이라는 결론.</div>
 </div>
 <div class="subtabs" id="st-jy">
-<button class="subtab active" onclick="switchSub(this,'jy-0')">집단토론</button>
-<button class="subtab " onclick="switchSub(this,'jy-1')">서류함기법</button>
-<button class="subtab " onclick="switchSub(this,'jy-2')">역할연기</button>
-<button class="subtab " onclick="switchSub(this,'jy-3')">팁 & 멘탈</button>
+<button class="subtab active" data-tab="jy-0">집단토론</button>
+<button class="subtab " data-tab="jy-1">서류함기법</button>
+<button class="subtab " data-tab="jy-2">역할연기</button>
+<button class="subtab " data-tab="jy-3">팁 & 멘탈</button>
 </div>
 <div class="subcontent" id="jy-0" style="display:block">
 <div class="items">
@@ -2876,6 +2876,14 @@ function switchSub(btn, tabId) {
   btn.classList.add('active');
   document.getElementById(tabId).style.display = 'block';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.subtab[data-tab]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      switchSub(btn, btn.getAttribute('data-tab'));
+    });
+  });
+});
 </script>
 </body>
 </html>

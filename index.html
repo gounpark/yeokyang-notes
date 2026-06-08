@@ -2868,6 +2868,14 @@ function closeToc(){document.getElementById('toc-panel').classList.remove('open'
 document.addEventListener('click',function(e){
   if(!e.target.closest('#toc-btn')&&!e.target.closest('#toc-panel'))document.getElementById('toc-panel').classList.remove('open');
 });
+
+function switchSub(btn, tabId) {
+  var pg = btn.closest('.page-section');
+  pg.querySelectorAll('.subtab').forEach(function(b){ b.classList.remove('active'); });
+  pg.querySelectorAll('.subcontent').forEach(function(c){ c.style.display='none'; });
+  btn.classList.add('active');
+  document.getElementById(tabId).style.display = 'block';
+}
 </script>
 </body>
 </html>

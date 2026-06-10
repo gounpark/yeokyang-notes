@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FC-직원 갈등 정리</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #f4f4f0; font-family: 'Noto Sans KR', -apple-system, sans-serif; font-size: 14px; line-height: 1.75; color: #141414; padding: 20px; }
+.card { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; border: 1px solid #e4e4e0; }
+h1 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.sub { font-size: 12px; color: #9a9a9a; margin-bottom: 20px; }
+h2 { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #9a9a9a; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+h2::after { content: ''; flex: 1; height: 1px; background: #e4e4e0; }
+.item { display: flex; gap: 10px; margin-bottom: 7px; font-size: 13.5px; }
+.dot { width: 5px; height: 5px; border-radius: 50%; background: #9a9a9a; flex-shrink: 0; margin-top: 8px; }
+.dot.warn { background: #c05020; }
+.dot.good { background: #208020; }
+.tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-right: 4px; }
+.tag-lim { background: #fae8f5; color: #7a1a6a; }
+.quote { background: #fafafa; border-left: 3px solid #7a1a6a; padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 13px; color: #4a4a4a; font-style: italic; margin-top: 8px; line-height: 1.7; }
+.step { background: #f8f8f5; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; }
+.step-num { font-size: 10px; font-weight: 700; color: #7a1a6a; margin-bottom: 5px; letter-spacing: .06em; }
+.key { background: #fae8f5; border: 1.5px solid #7a1a6a; border-radius: 8px; padding: 12px 14px; }
+.copy-btn { width: 100%; padding: 12px; background: #141414; color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 8px; font-family: inherit; }
+.copy-btn:active { background: #333; }
+.copied { background: #208020 !important; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>FC-직원 갈등 상황</h1>
+  <div class="sub"><span class="tag tag-lim">임은영</span> 서류함기법 과제 3번</div>
+
+  <h2>갈등 당사자</h2>
+  <div class="item"><span class="dot"></span><span>보험FC실 직원 1명 ↔ FC 1명</span></div>
+</div>
+
+<div class="card">
+  <h2>직원 입장</h2>
+  <div class="item"><span class="dot warn"></span><span>FC가 자기 민원을 직원한테 자꾸 떠넘김</span></div>
+  <div class="item"><span class="dot warn"></span><span>직원이 어리다고 FC가 반말함</span></div>
+  <div class="item"><span class="dot warn"></span><span>일을 자꾸 미룸 → 직원이 짜증남</span></div>
+
+  <h2 style="margin-top:16px">FC 입장</h2>
+  <div class="item"><span class="dot warn"></span><span>직원이 실적 안 좋은 FC 건 뒤로 미루고 실적 좋은 FC 건 먼저 처리해줌</span></div>
+  <div class="item"><span class="dot warn"></span><span>"실적을 하셔야죠" 하면서 기분 나쁘게 대함</span></div>
+  <div class="item"><span class="dot warn"></span><span>실적이 안 좋아서 차별받는다고 느낌</span></div>
+</div>
+
+<div class="card">
+  <h2>해결 방법</h2>
+
+  <div class="step">
+    <div class="step-num">1단계 — 갈등 유형 먼저 파악</div>
+    <div class="item"><span class="dot"></span><span>이 두 사람만의 <b>개인 갈등</b>인지</span></div>
+    <div class="item"><span class="dot"></span><span>FC 전반 vs 보험실 직원 전반의 <b>소그룹 갈등</b>인지</span></div>
+    <div class="item"><span class="dot"></span><span>민원 업무 분장 자체의 <b>구조적 문제</b>인지</span></div>
+    <div style="font-size:12.5px;color:#7a1a6a;margin-top:6px">→ 유형 규정 먼저 해야 접근 방향이 달라짐</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2단계 — 따로따로 만나서 팩트 체크</div>
+    <div class="item"><span class="dot"></span><span>같은 상황에 대해 A가 하는 말과 B가 하는 말이 다름</span></div>
+    <div class="item"><span class="dot"></span><span>각자 <b>따로</b> 만나서 팩트 확인 + "네가 양보할 부분이 있냐" 조율</span></div>
+    <div class="item"><span class="dot"></span><span>어느 정도 조율된 후에 <b>같이 만나서</b> 중재</span></div>
+  </div>
+
+  <div class="step key">
+    <div class="step-num">3단계 — 구조적 해결책 반드시 포함 ⭐ 핵심</div>
+    <div class="item"><span class="dot good"></span><span>화해·중재만으로 끝내면 안 됨</span></div>
+    <div class="item"><span class="dot good"></span><span><b>민원 업무 사무분장 재검토</b> 반드시 언급</span></div>
+    <div class="item"><span class="dot warn"></span><span>임은영 본인이 이걸 못 써서 후회했다고 직접 말함</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>임은영의 결론</h2>
+  <div class="quote">"두 사람 화해만 생각하지 말고, 사무분장이라든지 규정이라든지 구조적인 문제를 항상 같이 생각해야 한다. 머릿속엔 다 알고 있는데 표현을 안 하면 점수가 안 나온다."</div>
+</div>
+
+<button class="copy-btn" onclick="copyAll()">📋 전체 내용 복사</button>
+
+<script>
+function copyAll() {
+  const text = `FC-직원 갈등 상황 (임은영 서류함기법 과제 3번)
+
+【갈등 당사자】
+보험FC실 직원 1명 ↔ FC 1명
+
+【직원 입장】
+• FC가 자기 민원을 직원한테 자꾸 떠넘김
+• 직원이 어리다고 FC가 반말함
+• 일을 자꾸 미룸 → 직원이 짜증남
+
+【FC 입장】
+• 직원이 실적 안 좋은 FC 건 뒤로 미루고 실적 좋은 FC 건 먼저 처리해줌
+• "실적을 하셔야죠" 하면서 기분 나쁘게 대함
+• 실적이 안 좋아서 차별받는다고 느낌
+
+【해결 방법】
+
+1단계 — 갈등 유형 먼저 파악
+• 이 두 사람만의 개인 갈등인지
+• FC 전반 vs 보험실 직원 전반의 소그룹 갈등인지
+• 민원 업무 분장 자체의 구조적 문제인지
+→ 유형 규정 먼저 해야 접근 방향이 달라짐
+
+2단계 — 따로따로 만나서 팩트 체크
+• 같은 상황에 대해 A가 하는 말과 B가 하는 말이 다름
+• 각자 따로 만나서 팩트 확인 + "네가 양보할 부분이 있냐" 조율
+• 어느 정도 조율된 후에 같이 만나서 중재
+
+3단계 — 구조적 해결책 반드시 포함 ★핵심★
+• 화해·중재만으로 끝내면 안 됨
+• 민원 업무 사무분장 재검토 반드시 언급
+• 임은영 본인이 이걸 못 써서 후회했다고 직접 말함
+
+【임은영의 결론】
+"두 사람 화해만 생각하지 말고, 사무분장이라든지 규정이라든지 구조적인 문제를 항상 같이 생각해야 한다. 머릿속엔 다 알고 있는데 표현을 안 하면 점수가 안 나온다."`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✓ 복사됐어요!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 전체 내용 복사';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>

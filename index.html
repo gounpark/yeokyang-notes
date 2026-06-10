@@ -196,6 +196,38 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
   .s-label.good { color: #208020; }
   .s-label.warn { color: #c05020; }
   .s-label.point { color: var(--c2); }
+
+  /* ── 검색 ── */
+  .search-wrap{position:relative;margin-bottom:20px}
+  .search-input{
+    width:100%;padding:10px 40px 10px 14px;
+    border:1.5px solid var(--border2);border-radius:8px;
+    font-size:14px;font-family:inherit;background:var(--surface);
+    color:var(--ink);outline:none;transition:border-color .15s;
+  }
+  .search-input:focus{border-color:var(--ink)}
+  .search-icon{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--ink3);pointer-events:none}
+  .search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink3);cursor:pointer;background:none;border:none;padding:0;display:none}
+  .search-results{
+    display:none;
+    flex-direction:column;gap:6px;
+    margin-bottom:16px;
+  }
+  .search-results.show{display:flex}
+  .search-count{font-size:12px;color:var(--ink3);margin-bottom:4px}
+  .search-result-item{
+    background:var(--surface);border:1px solid var(--border);border-radius:8px;
+    padding:11px 14px;cursor:pointer;transition:border-color .15s;
+  }
+  .search-result-item:hover{border-color:var(--border2)}
+  .search-result-tag{
+    font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink3);margin-bottom:5px;display:flex;gap:6px;align-items:center;
+  }
+  .search-result-text{font-size:13.5px;color:var(--ink);line-height:1.65}
+  .search-result-text mark{background:#fef08a;color:inherit;border-radius:2px;padding:0 2px}
+  .search-empty{font-size:13px;color:var(--ink3);padding:12px 0;text-align:center}
+  .item.search-highlight{border-color:#fbbf24 !important;background:#fffbeb !important}
 </style>
 </head>
 <body>
@@ -216,6 +248,16 @@ body{background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif
   <div class="hdr-label">우정사업본부 5급 승진 역량평가</div>
   <h1>시험 후기 정리</h1>
   <div class="hdr-meta">통화 녹음 4건 + 강사 강의 녹취 · 2026년 기준</div>
+</div>
+
+
+<div class="search-wrap">
+  <input class="search-input" type="text" id="search-input" placeholder="검색어 입력 (예: 집단토론, 양보, 타이머)" autocomplete="off">
+  <span class="search-icon" id="search-icon">🔍</span>
+  <button class="search-clear" id="search-clear" onclick="clearSearch()">✕</button>
+</div>
+<div class="search-results" id="search-results">
+  <div class="search-count" id="search-count"></div>
 </div>
 
 <div class="page-tabs">
@@ -1174,6 +1216,172 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// ── 검색 ──
+var searchData = [];
+
+function buildSearchIndex() {
+  searchData = [];
+  var allItems = document.querySelectorAll('.item');
+  allItems.forEach(function(item) {
+    var textEl = item.querySelector('.item-text');
+    if (!textEl) return;
+    // 텍스트만 추출 (hl 태그 제외)
+    var clone = textEl.cloneNode(true);
+    clone.querySelectorAll('.hl, .quote-box').forEach(function(el){ el.remove(); });
+    var text = clone.textContent.trim();
+    if (!text) return;
+
+    // 소속 탭 파악
+    var pg = item.closest('.page-section');
+    var sub = item.closest('.subcontent');
+    var pgId = pg ? pg.id : '';
+    var subId = sub ? sub.id : '';
+
+    // 라벨 만들기
+    var pgLabel = {
+      'pg-review':'전체 정리','pg-kim':'김영숙','pg-jung':'정기홍',
+      'pg-lim':'임은영','pg-jy':'김지영','pg-lec':'조은희 강사'
+    }[pgId] || pgId;
+
+    // 서브탭 라벨
+    var subBtn = subId ? document.querySelector('[data-tab="'+subId+'"]') : null;
+    var subLabel = subBtn ? subBtn.textContent.trim() : '';
+
+    // 섹션 라벨
+    var sBlock = item.closest('.s-block');
+    var sLabel = sBlock ? (sBlock.querySelector('.s-label') ? sBlock.querySelector('.s-label').textContent.trim() : '') : '';
+
+    searchData.push({
+      text: text,
+      pgId: pgId,
+      pgLabel: pgLabel,
+      subId: subId,
+      subLabel: subLabel,
+      sLabel: sLabel,
+      el: item
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(buildSearchIndex, 300);
+
+  var input = document.getElementById('search-input');
+  var icon = document.getElementById('search-icon');
+  var clearBtn = document.getElementById('search-clear');
+
+  input.addEventListener('input', function() {
+    var q = input.value.trim();
+    if (q) {
+      icon.style.display = 'none';
+      clearBtn.style.display = 'block';
+      doSearch(q);
+    } else {
+      clearSearch();
+    }
+  });
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') clearSearch();
+  });
+});
+
+function doSearch(q) {
+  var keywords = q.toLowerCase().split(/\s+/).filter(Boolean);
+  var results = searchData.filter(function(d) {
+    return keywords.every(function(kw) {
+      return d.text.toLowerCase().indexOf(kw) !== -1;
+    });
+  });
+
+  var container = document.getElementById('search-results');
+  var countEl = document.getElementById('search-count');
+  container.classList.add('show');
+
+  // 기존 결과 제거
+  while (container.children.length > 1) container.removeChild(container.lastChild);
+
+  // 하이라이트 초기화
+  document.querySelectorAll('.item.search-highlight').forEach(function(el){
+    el.classList.remove('search-highlight');
+  });
+
+  if (results.length === 0) {
+    countEl.textContent = '검색 결과 없음';
+    var empty = document.createElement('div');
+    empty.className = 'search-empty';
+    empty.textContent = '"' + q + '" 에 해당하는 내용이 없어요';
+    container.appendChild(empty);
+    return;
+  }
+
+  countEl.textContent = results.length + '개 항목 발견';
+
+  results.slice(0, 30).forEach(function(d) {
+    var card = document.createElement('div');
+    card.className = 'search-result-item';
+
+    var tag = document.createElement('div');
+    tag.className = 'search-result-tag';
+    tag.textContent = [d.pgLabel, d.subLabel, d.sLabel].filter(Boolean).join(' › ');
+
+    var txt = document.createElement('div');
+    txt.className = 'search-result-text';
+    // 하이라이트 처리
+    var highlighted = d.text;
+    keywords.forEach(function(kw) {
+      var re = new RegExp('(' + kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
+      highlighted = highlighted.replace(re, '<mark>$1</mark>');
+    });
+    txt.innerHTML = highlighted;
+
+    card.appendChild(tag);
+    card.appendChild(txt);
+
+    card.addEventListener('click', function() {
+      // 해당 탭으로 이동
+      if (d.pgId) {
+        var pgBtn = document.querySelector('[onclick*=\"' + d.pgId + '\"]');
+        if (pgBtn) pgBtn.click();
+      }
+      // 서브탭 이동
+      if (d.subId) {
+        setTimeout(function() {
+          var subBtn = document.querySelector('[data-tab="' + d.subId + '"]');
+          if (subBtn) subBtn.click();
+          // 스크롤
+          setTimeout(function() {
+            d.el.classList.add('search-highlight');
+            d.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 150);
+        }, 100);
+      }
+    });
+
+    container.appendChild(card);
+  });
+
+  if (results.length > 30) {
+    var more = document.createElement('div');
+    more.className = 'search-empty';
+    more.textContent = '+ ' + (results.length - 30) + '개 더 있음 (검색어를 좁혀보세요)';
+    container.appendChild(more);
+  }
+}
+
+function clearSearch() {
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-icon').style.display = 'block';
+  document.getElementById('search-clear').style.display = 'none';
+  var container = document.getElementById('search-results');
+  container.classList.remove('show');
+  while (container.children.length > 1) container.removeChild(container.lastChild);
+  document.querySelectorAll('.item.search-highlight').forEach(function(el){
+    el.classList.remove('search-highlight');
+  });
+}
+
 </script>
 </body>
 </html>

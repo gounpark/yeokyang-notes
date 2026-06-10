@@ -1129,50 +1129,79 @@ var searchData = [];
 
 function buildSearchIndex() {
   searchData = [];
-  var allItems = document.querySelectorAll('.item');
-  allItems.forEach(function(item) {
+
+  var pgLabels = {
+    'pg-review':'전체 정리','pg-kim':'김영숙','pg-jung':'정기홍',
+    'pg-lim':'임은영','pg-jy':'김지영','pg-lec':'조은희 강사'
+  };
+
+  // 모든 page-section 순회
+  document.querySelectorAll('.page-section').forEach(function(pg) {
+    var pgId = pg.id;
+    var pgLabel = pgLabels[pgId] || pgId;
+
+    // 서브탭별 순회
+    var subcontents = pg.querySelectorAll('.subcontent');
+    if (subcontents.length === 0) {
+      // 서브탭 없는 경우 (전체 정리 탭 등)
+      indexItems(pg, pgId, pgLabel, '', '', null);
+    } else {
+      subcontents.forEach(function(sub) {
+        var subId = sub.id;
+        var subBtn = pg.querySelector('[data-tab="' + subId + '"]');
+        var subLabel = subBtn ? subBtn.textContent.trim() : '';
+        indexItems(sub, pgId, pgLabel, subId, subLabel, sub);
+      });
+    }
+  });
+}
+
+function indexItems(container, pgId, pgLabel, subId, subLabel, subEl) {
+  // 1) .item 텍스트
+  container.querySelectorAll('.item').forEach(function(item) {
     var textEl = item.querySelector('.item-text');
     if (!textEl) return;
-    // 텍스트만 추출 (hl 태그 제외)
     var clone = textEl.cloneNode(true);
     clone.querySelectorAll('.hl, .quote-box').forEach(function(el){ el.remove(); });
     var text = clone.textContent.trim();
     if (!text) return;
 
-    // 소속 탭 파악
-    var pg = item.closest('.page-section');
-    var sub = item.closest('.subcontent');
-    var pgId = pg ? pg.id : '';
-    var subId = sub ? sub.id : '';
-
-    // 라벨 만들기
-    var pgLabel = {
-      'pg-review':'전체 정리','pg-kim':'김영숙','pg-jung':'정기홍',
-      'pg-lim':'임은영','pg-jy':'김지영','pg-lec':'조은희 강사'
-    }[pgId] || pgId;
-
-    // 서브탭 라벨
-    var subBtn = subId ? document.querySelector('[data-tab="'+subId+'"]') : null;
-    var subLabel = subBtn ? subBtn.textContent.trim() : '';
-
     // 섹션 라벨
     var sBlock = item.closest('.s-block');
     var sLabel = sBlock ? (sBlock.querySelector('.s-label') ? sBlock.querySelector('.s-label').textContent.trim() : '') : '';
 
-    searchData.push({
-      text: text,
-      pgId: pgId,
-      pgLabel: pgLabel,
-      subId: subId,
-      subLabel: subLabel,
-      sLabel: sLabel,
-      el: item
+    searchData.push({ text: text, pgId: pgId, pgLabel: pgLabel, subId: subId, subLabel: subLabel, sLabel: sLabel, el: item, subEl: subEl });
+  });
+
+  // 2) .pcard-item 텍스트 (문제 카드 항목)
+  container.querySelectorAll('.pcard').forEach(function(card) {
+    var title = card.querySelector('.pcard-title') ? card.querySelector('.pcard-title').textContent.trim() : '';
+    var badge = card.querySelector('.pcard-badge') ? card.querySelector('.pcard-badge').textContent.trim() : '';
+    card.querySelectorAll('.pcard-item').forEach(function(pi) {
+      var text = pi.textContent.trim();
+      if (!text) return;
+      var sBlock = card.closest('.s-block');
+      var sLabel = sBlock ? (sBlock.querySelector('.s-label') ? sBlock.querySelector('.s-label').textContent.trim() : '') : '';
+      searchData.push({ text: '[' + badge + '] ' + title + ' — ' + text, pgId: pgId, pgLabel: pgLabel, subId: subId, subLabel: subLabel, sLabel: sLabel, el: card, subEl: subEl });
     });
   });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(buildSearchIndex, 300);
+  // 모든 서브탭을 잠깐 visible로 만들어서 인덱싱 후 다시 hide
+  setTimeout(function() {
+    // 모든 subcontent 임시 표시
+    var hidden = [];
+    document.querySelectorAll('.subcontent[style*="display:none"], .subcontent:not([style])').forEach(function(el) {
+      if (el.style.display === 'none') {
+        hidden.push(el);
+        el.style.display = 'block';
+      }
+    });
+    buildSearchIndex();
+    // 다시 숨기기
+    hidden.forEach(function(el) { el.style.display = 'none'; });
+  }, 500);
 
   var input = document.getElementById('search-input');
   var icon = document.getElementById('search-icon');
@@ -1206,10 +1235,8 @@ function doSearch(q) {
   var countEl = document.getElementById('search-count');
   container.classList.add('show');
 
-  // 기존 결과 제거
   while (container.children.length > 1) container.removeChild(container.lastChild);
 
-  // 하이라이트 초기화
   document.querySelectorAll('.item.search-highlight').forEach(function(el){
     el.classList.remove('search-highlight');
   });
@@ -1235,11 +1262,59 @@ function doSearch(q) {
 
     var txt = document.createElement('div');
     txt.className = 'search-result-text';
-    // 하이라이트 처리
     var highlighted = d.text;
     keywords.forEach(function(kw) {
       var re = new RegExp('(' + kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
       highlighted = highlighted.replace(re, '<mark>$1</mark>');
+    });
+    txt.innerHTML = highlighted;
+
+    card.appendChild(tag);
+    card.appendChild(txt);
+
+    card.addEventListener('click', function() {
+      // 탭 전환
+      var pgBtn = document.querySelector('[onclick*=\'' + d.pgId + '\']');
+      if (pgBtn) pgBtn.click();
+
+      setTimeout(function() {
+        // 서브탭 전환
+        if (d.subId) {
+          var subBtn = document.querySelector('[data-tab="' + d.subId + '"]');
+          if (subBtn) subBtn.click();
+        }
+        setTimeout(function() {
+          if (d.el) {
+            d.el.classList.add('search-highlight');
+            d.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 150);
+      }, 100);
+    });
+
+    container.appendChild(card);
+  });
+
+  if (results.length > 30) {
+    var more = document.createElement('div');
+    more.className = 'search-empty';
+    more.textContent = '+ ' + (results.length - 30) + '개 더 있음 (검색어를 좁혀보세요)';
+    container.appendChild(more);
+  }
+}
+
+function clearSearch() {
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-icon').style.display = 'block';
+  document.getElementById('search-clear').style.display = 'none';
+  var container = document.getElementById('search-results');
+  container.classList.remove('show');
+  while (container.children.length > 1) container.removeChild(container.lastChild);
+  document.querySelectorAll('.item.search-highlight').forEach(function(el){
+    el.classList.remove('search-highlight');
+  });
+}
+;
     });
     txt.innerHTML = highlighted;
 
